@@ -11,29 +11,29 @@
         <tr>
           <th>年月</th>
           <th>年齢</th>
-          <th>出来事</th>
+          <th>経歴</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>2002年12月05日</td>
-          <td>0歳</td>
-          <td>誕生</td>
-        </tr>
-        <tr>
           <td>2019年04月</td>
           <td>16歳</td>
-          <td>高校入学</td>
+          <td>駒澤大学高等学校　入学</td>
         </tr>
         <tr>
           <td>2021年03月</td>
           <td>18歳</td>
-          <td>高校卒業</td>
+          <td>駒澤大学高等学校　卒業</td>
         </tr>
         <tr>
           <td>2021年04月</td>
           <td>18歳</td>
-          <td>大学入学</td>
+          <td>明治学院大学　社会学部　社会福祉学科　入学</td>
+        </tr>
+        <tr>
+          <td>2025年03月</td>
+          <td>22歳</td>
+          <td>明治学院大学　社会学部　社会福祉学科　卒業見込み</td>
         </tr>
       </tbody>
     </table>
@@ -51,7 +51,7 @@
 
 /* ベーススタイル */
 .career-table {
-  width: 50%;
+  width: 60%;
   border-collapse: collapse;
   font-family: 'Arial', sans-serif;
   color: #333;
