@@ -4,6 +4,7 @@
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",
+    "src/**/*.vue",
     "nightwatch.conf.*",
     "playwright.config.*"
   ],
@@ -11,6 +12,6 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "types": ["node","vue"]
+    "types": ["node", "vue"]
   }
 }
