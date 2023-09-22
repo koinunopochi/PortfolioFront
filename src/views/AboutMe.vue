@@ -1,7 +1,9 @@
 <template>
   <div class="about">
-    <h1>岡山　晃大</h1>
-    <p>ポートフォリオサイト</p>
+    <div class="title">
+      <h1>岡山　晃大</h1>
+      <p>ポートフォリオサイト</p>
+    </div>
 
     <h2>経歴</h2>
     <table class="career-table">
@@ -39,9 +41,17 @@
 </template>
 
 <style>
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
 /* ベーススタイル */
 .career-table {
-  width: 100%;
+  width: 50%;
   border-collapse: collapse;
   font-family: 'Arial', sans-serif;
   color: #333;
