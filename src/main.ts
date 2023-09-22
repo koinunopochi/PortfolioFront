@@ -18,11 +18,9 @@ const vuetify = createVuetify({
   directives,
 })
 
+// main.ts
 const app = createApp(App)
-
 app.use(createPinia())
 app.use(router)
-
-
-// 以下のように .use(vuetify) を追加
-createApp(App).use(vuetify).mount('#app')
+app.use(vuetify) // ここで、先ほど作成したappインスタンスにvuetifyを追加
+app.mount('#app') // ここでappをマウント
