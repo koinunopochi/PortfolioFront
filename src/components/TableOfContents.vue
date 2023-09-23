@@ -9,12 +9,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 // itemsは親コンポーネントから受け取る
-const { items } = defineProps(['items'])
+const { items } = defineProps(['items']);
 </script>
-
 
 <style scoped>
 .table-of-contents {
@@ -22,11 +21,6 @@ const { items } = defineProps(['items'])
   margin: 20px;
   /* 最小サイズ */
   min-width: 200px;
-}
-
-.table-of-contents h2 {
-  /* ヘッダのテキスト色 */
-  color: #333; /* もしくはお好みの色 */
 }
 
 .table-of-contents ul {
@@ -44,17 +38,16 @@ const { items } = defineProps(['items'])
 
 .table-of-contents a {
   /* リンクテキストの色 */
-  color: #0066cc; /* もしくはお好みの色 */
+  color: #545555;
   /* テキストの装飾をなしに */
   text-decoration: none;
   /* ホバーエフェクトの追加 */
   transition: color 0.3s, text-decoration 0.3s;
 }
-
 .table-of-contents a:hover {
-  /* ホバー時のテキスト色 */
-  color: #004499; /* もしくはお好みの色 */
-  /* ホバー時のテキスト装飾 */
   text-decoration: underline;
+}
+.table-of-contents li:hover {
+  background-color: #d3d3d3;
 }
 </style>
