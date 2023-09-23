@@ -36,7 +36,7 @@
   /* 横幅 */
   width: 20%;
   /* 最小サイズ */
-  min-width: 30px;
+  min-width: 80px;
   /* 高さ */
   height: 100vh;
   padding: 0 20px;
