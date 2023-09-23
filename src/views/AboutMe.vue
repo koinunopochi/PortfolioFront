@@ -1,6 +1,5 @@
 <template>
-  <div class="about-me">
-  </div>
+  <div class="about-me"></div>
   <!-- flex-content -->
   <div class="all-contents">
     <!-- サイドバー -->
@@ -111,6 +110,7 @@
           </div>
         </div>
       </div>
+      <InternView />
     </div>
     <!-- 目次 -->
     <TableOfContents :items="tableOfContentsItems" />
@@ -120,6 +120,7 @@
 <script setup lang="ts">
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
+import InternView from '../components/InternView.vue';
 
 const tableOfContentsItems = [
   {
@@ -169,6 +170,7 @@ h3 {
   /* 角を丸める */
   border-radius: 8px;
   margin-bottom: 20px;
+  margin-right: 10px;
 }
 .contents {
   margin-bottom: 30px;
