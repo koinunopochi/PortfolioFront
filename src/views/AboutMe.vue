@@ -13,10 +13,12 @@
       <!-- プロフィール -->
       <div id="profile">
         <h2>プロフィール</h2>
-        <p>岡山　晃大</p>
-        <p>2002年12月05日生まれ</p>
-        <p>20歳</p>
-        <p>明治学院大学　社会学部　社会福祉学科　3年</p>
+        <div class="contents">
+          <p>岡山　晃大</p>
+          <p>2002年12月05日生まれ</p>
+          <p>20歳</p>
+          <p>明治学院大学　社会学部　社会福祉学科　3年</p>
+        </div>
       </div>
 
       <!-- 経歴 -->
@@ -67,6 +69,13 @@ import TableOfContents from '../components/TableOfContents.vue';
 </script>
 
 <style>
+h1,
+h2 {
+  font-weight: bold;
+  margin-bottom: 10px;
+  /* 区切り線 */
+  border-bottom: solid 1px #ddd;
+}
 .all-contents {
   display: flex;
   flex-direction: row;
@@ -77,17 +86,16 @@ import TableOfContents from '../components/TableOfContents.vue';
 }
 .about {
   /* マージンの設定 */
-  margin: 20px;
+  margin-top: 20px;
   /* パディング */
-  padding:20px 40px;
+  padding: 20px 40px;
   /* 背景を白にする */
   background-color: #fff;
   /* 角を丸める */
   border-radius: 8px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+}
+.contents{
+  margin-bottom: 10px;
 }
 
 /* ベーススタイル */
