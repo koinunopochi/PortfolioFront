@@ -3,7 +3,7 @@
   <div class="all-contents">
     <!-- サイドバー -->
     <SideBar />
-    <div class="about">
+    <div class="main">
       <h1 class="title">ABOUT ME</h1>
 
       <!-- プロフィール -->
@@ -140,39 +140,11 @@ const tableOfContentsItems = [
   },
 ];
 </script>
+<style scoped>
+@import '../assets/main.css';
+</style>
 
-<style>
-h1,
-h2,
-h3 {
-  font-weight: bold;
-  margin-bottom: 10px;
-  /* 区切り線 */
-  border-bottom: solid 1px #ddd;
-}
-.title {
-  /* 中心に配置 */
-  text-align: center;
-  margin-bottom: 40px;
-}
-.all-contents {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.about {
-  /* マージンの設定 */
-  margin-top: 20px;
-  /* パディング */
-  padding: 20px 40px;
-  /* 背景を白にする */
-  background-color: #fff;
-  /* 角を丸める */
-  border-radius: 8px;
-  margin-bottom: 20px;
-  margin-right: 10px;
-}
+<style scoped>
 .contents {
   margin-bottom: 30px;
 }

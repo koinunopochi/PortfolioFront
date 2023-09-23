@@ -2,8 +2,8 @@
   <div class="all-contents">
         <!-- サイドバー -->
     <SideBar />
-    <div class="projects">
-      <h1 class="title">PROJECTS</h1>
+    <div class="main projects">
+      <h1 class="title" id="projects">PROJECTS</h1>
       <div class="contents">
         <h2>プロジェクト</h2>
         <p>現在、プロジェクトはありません。</p>
@@ -18,8 +18,11 @@ import TableOfContents from '../components/TableOfContents.vue';
 
 const tableOfContentsItems = [
   {
-    id: 'profile',
-    name: 'プロフィール',
+    id: 'projects',
+    name: 'プロジェクト',
   },
 ];
 </script>
+<style scoped>
+@import '../assets/main.css';
+</style>
