@@ -8,7 +8,7 @@
     <!-- サイドバー -->
     <SideBar />
     <div class="about">
-      <h1>ABOUT ME</h1>
+      <h1 class="title">ABOUT ME</h1>
 
       <!-- プロフィール -->
       <div id="profile">
@@ -105,16 +105,17 @@ import TableOfContents from '../components/TableOfContents.vue';
 </script>
 
 <style>
-h1 {
-  /* 中心に配置 */
-  text-align: center;
-}
 h1,
 h2 {
   font-weight: bold;
   margin-bottom: 10px;
   /* 区切り線 */
   border-bottom: solid 1px #ddd;
+}
+.title {
+  /* 中心に配置 */
+  text-align: center;
+  margin-bottom: 40px;
 }
 .all-contents {
   display: flex;
@@ -148,7 +149,7 @@ h2 {
   display: flex;
   justify-content: flex-start;
 }
-.lang{
+.lang {
   margin-right: 20px;
 }
 /* ベーススタイル */
