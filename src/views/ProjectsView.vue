@@ -13,6 +13,20 @@
             <p>自動で画像を撮影するプログラム</p>
           </button>
         </div>
+        <div class="contents" id="youtube_text">
+          <button @click="move('/projects/youtube-text')">
+            <h3>YoutubeText</h3>
+            <h4>概要</h4>
+            <p>Youtubeの字幕から、ChatGPTにYoutubeに関する質問を行うプログラム</p>
+          </button>
+        </div>
+        <div class="contents" id="node_summary">
+          <button @click="move('/projects/node-summary')">
+            <h3>NodeDocSummary_GPT</h3>
+            <h4>概要</h4>
+            <p>Node.jsのドキュメントを要約したりして、質問に答えるプログラム</p>
+          </button>
+        </div>
       </div>
     </div>
     <TableOfContents :items="tableOfContentsItems" />
@@ -29,6 +43,18 @@ const tableOfContentsItems = [
   {
     id: 'projects',
     name: 'プロジェクト',
+  },
+  {
+    id: 'auto_pic',
+    name: 'AutoPic',
+  },
+  {
+    id: 'youtube_text',
+    name: 'YoutubeText',
+  },
+  {
+    id: 'node_summary',
+    name: 'NodeDocSummary_GPT',
   },
 ];
 
@@ -47,6 +73,9 @@ const move = (path: string) => {
   padding: 10px;
   /* 角を丸くする */
   border-radius: 8px;
+  margin-bottom: 20px;
+  /* 中央に配置 */
+  text-align: center;
 }
 .contents:hover{
   background-color: #a7ff9d;
