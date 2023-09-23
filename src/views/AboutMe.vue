@@ -1,5 +1,7 @@
 <template>
   <div class="all-contents">
+    <!-- サイドバー -->
+    <SideBar />
     <div class="about">
       <div class="title">
         <h1>岡山　晃大</h1>
@@ -57,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
 </script>
 
@@ -73,7 +76,7 @@ import TableOfContents from '../components/TableOfContents.vue';
   /* マージンの設定 */
   margin: 20px;
   /* パディング */
-  padding: 15px;
+  padding: 40px;
   /* 背景を白にする */
   background-color: #fff;
   /* 角を丸める */
