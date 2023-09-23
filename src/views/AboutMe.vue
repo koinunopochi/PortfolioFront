@@ -52,27 +52,36 @@
       </div>
     </div>
     <!-- 目次 -->
-    <div class="table-of-contents">
-      <h2>目次</h2>
-      <ul>
-        <li><a href="#profile">プロフィール</a></li>
-        <li><a href="#career">経歴</a></li>
-      </ul>
-    </div>
+    <TableOfContents />
   </div>
 </template>
+
+<script setup lang="ts">
+import TableOfContents from '../components/TableOfContents.vue';
+</script>
 
 <style>
 .all-contents {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start; /* 子要素を上端に揃えます。必要に応じて変更可能です。 */
+  align-items: flex-start;
+  /* 背景色 */
+  background-color: #f5f6f6;
 }
 .about {
+  /* マージンの設定 */
+  margin: 20px;
+  /* パディング */
+  padding: 15px;
+  /* 背景を白にする */
+  background-color: #fff;
+  /* 角を丸める */
+  border-radius: 8px;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* ベーススタイル */
