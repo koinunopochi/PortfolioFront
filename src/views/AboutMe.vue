@@ -14,10 +14,10 @@
       <div id="profile">
         <h2>プロフィール</h2>
         <div class="contents">
-          <p>岡山　晃大</p>
-          <p>2002年12月05日生まれ</p>
-          <p>20歳</p>
-          <p>明治学院大学　社会学部　社会福祉学科　3年</p>
+          <p class="name">岡山 晃大</p>
+          <p class="birth-date">2002年12月05日生まれ</p>
+          <p class="age">20歳</p>
+          <p class="school">明治学院大学　社会学部　社会福祉学科　3年</p>
         </div>
       </div>
 
@@ -69,7 +69,7 @@ import TableOfContents from '../components/TableOfContents.vue';
 </script>
 
 <style>
-h1{
+h1 {
   /* 中心に配置 */
   text-align: center;
 }
@@ -98,8 +98,12 @@ h2 {
   /* 角を丸める */
   border-radius: 8px;
 }
-.contents{
+.contents {
   margin-bottom: 10px;
+}
+.name {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /* ベーススタイル */
