@@ -135,6 +135,10 @@ const tableOfContentsItems = [
     id: 'skill',
     name: '利用可能技術',
   },
+  {
+    id: 'intern',
+    name: 'インターン',
+  },
 ];
 </script>
 
