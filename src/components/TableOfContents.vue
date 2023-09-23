@@ -18,15 +18,21 @@ const { items } = defineProps(['items']);
 <style scoped>
 .table-of-contents {
   /* マージンの設定 */
-  margin: 20px;
+  margin-top: 20px;
+  margin-right: 40px;
   /* 最小サイズ */
   min-width: 200px;
+
+  /* 角を丸める */
+  border-radius: 5px;
+  /* 細い線を書く */
+  border: solid 1px #ddd;
 }
 
 .table-of-contents ul {
   /* リストのマージンとパディングをリセット */
-  margin: 0;
   padding: 0;
+  margin: 10px;
   /* リストのスタイルタイプをなしに */
   list-style: none;
 }
