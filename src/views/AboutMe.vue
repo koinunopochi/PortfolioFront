@@ -68,7 +68,29 @@
       <!-- 利用可能技術 -->
       <div class="">
         <h2>利用可能技術</h2>
-        <div class="contents"></div>
+        <div class="contents">
+          <div class="contents-flex">
+            <div class="lang">
+              <h3>言語</h3>
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>Java</li>
+                <li>Python</li>
+              </ul>
+            </div>
+            <div class="flame-work">
+              <h3>フレームワーク</h3>
+              <ul>
+                <li>Vue.js</li>
+                <li>Express.js</li>
+                <li>Spring Boot</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 目次 -->
@@ -122,7 +144,13 @@ h2 {
   font-size: 20px;
   font-weight: bold;
 }
-
+.contents-flex {
+  display: flex;
+  justify-content: flex-start;
+}
+.lang{
+  margin-right: 20px;
+}
 /* ベーススタイル */
 .career-table {
   width: 100%;
