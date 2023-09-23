@@ -1,24 +1,27 @@
 <template>
   <div class="table-of-contents">
     <ul>
-      <li><a href="#profile">プロフィール</a></li>
-      <li><a href="#career">経歴</a></li>
+      <li v-for="item in items" :key="item.id">
+        <a :href="`#${item.id}`">{{ item.name }}</a>
+      </li>
     </ul>
   </div>
 </template>
+
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+// itemsは親コンポーネントから受け取る
+const { items } = defineProps(['items'])
+</script>
+
+
 <style scoped>
 .table-of-contents {
   /* マージンの設定 */
   margin: 20px;
   /* 最小サイズ */
   min-width: 200px;
-  /* 背景色の設定 */
-  /* background-color: #f9f9f9; */
-  /* パディングの設定 */
-  /* padding: 10px; */
-  /* 枠線と丸みの設定 */
-  /* border: 1px solid #ddd;
-  border-radius: 8px; */
 }
 
 .table-of-contents h2 {
@@ -55,4 +58,3 @@
   text-decoration: underline;
 }
 </style>
-
