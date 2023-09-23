@@ -5,38 +5,59 @@
       <p>ポートフォリオサイト</p>
     </div>
 
-    <h2>経歴</h2>
-    <table class="career-table">
-      <thead>
-        <tr>
-          <th>年月</th>
-          <th>年齢</th>
-          <th>経歴</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2019年04月</td>
-          <td>16歳</td>
-          <td>駒澤大学高等学校　入学</td>
-        </tr>
-        <tr>
-          <td>2021年03月</td>
-          <td>18歳</td>
-          <td>駒澤大学高等学校　卒業</td>
-        </tr>
-        <tr>
-          <td>2021年04月</td>
-          <td>18歳</td>
-          <td>明治学院大学　社会学部　社会福祉学科　入学</td>
-        </tr>
-        <tr>
-          <td>2025年03月</td>
-          <td>22歳</td>
-          <td>明治学院大学　社会学部　社会福祉学科　卒業見込み</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- 目次 -->
+    <div class="contents">
+      <h2>目次</h2>
+      <ul>
+        <li><a href="#profile">プロフィール</a></li>
+        <li><a href="#career">経歴</a></li>
+      </ul>
+    </div>
+
+    <!-- プロフィール -->
+    <div id="profile">
+      <h2>プロフィール</h2>
+      <p>岡山　晃大</p>
+      <p>2002年12月05日生まれ</p>
+      <p>20歳</p>
+      <p>明治学院大学　社会学部　社会福祉学科　3年</p>
+    </div>
+
+    <!-- 経歴 -->
+    <div>
+      <h2  id="career">経歴</h2>
+      <table class="career-table">
+        <thead>
+          <tr>
+            <th>年月</th>
+            <th>年齢</th>
+            <th>経歴</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2019年04月</td>
+            <td>16歳</td>
+            <td>駒澤大学高等学校　入学</td>
+          </tr>
+          <tr>
+            <td>2021年03月</td>
+            <td>18歳</td>
+            <td>駒澤大学高等学校　卒業</td>
+          </tr>
+          <tr>
+            <td>2021年04月</td>
+            <td>18歳</td>
+            <td>明治学院大学　社会学部　社会福祉学科　入学</td>
+          </tr>
+          <tr>
+            <td>2025年03月</td>
+            <td>22歳</td>
+            <td>明治学院大学　社会学部　社会福祉学科　卒業見込み</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -46,8 +67,6 @@
   flex-direction: column;
   align-items: center;
 }
-
-
 
 /* ベーススタイル */
 .career-table {
