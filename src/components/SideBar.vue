@@ -1,10 +1,16 @@
 <template>
   <div class="side-bar">
-    <p>hogehoge</p>
-    <img src="" alt="x" />
-    <img src="" alt="qiita" />
+    <div class="content">
+      <h3>Contact</h3>
+      <div class="links">
+        <a href="https://github.com/koinunopochi"> GitHub </a>
+        <a href="https://twitter.com/a1a2a3b1b2b3b4"> X(旧Twitter) </a>
+        <a href="https://qiita.com/koinunopochi"> Qiita </a>
+      </div>
+    </div>
   </div>
 </template>
+<script setup lang="ts"></script>
 <style scoped>
 .side-bar {
   /* マージンの設定 */
@@ -15,11 +21,24 @@
   min-width: 30px;
   /* 高さ */
   height: 100vh;
-  /* パディングの設定 */
-  padding: 10px;
+  padding: 0 20px;
+}
+.links {
+  padding-left: 10px;
   /* 右寄りに配置 */
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 }
+.links a {
+  color: #28a745;
+  text-decoration: none; /* アンダーラインを削除 */
+  transition: color 0.3s ease-in-out; /* 色が滑らかに変わるように設定 */
+}
+
+.links a:hover {
+  color: #218838;
+  text-decoration: underline;
+}
+
 </style>
