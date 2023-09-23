@@ -1,4 +1,8 @@
 <template>
+  <div class="about-me">
+    <!-- ナビゲーションバー -->
+    <NavBar />
+  </div>
   <div class="all-contents">
     <!-- サイドバー -->
     <SideBar />
@@ -59,6 +63,7 @@
 </template>
 
 <script setup lang="ts">
+import NavBar from '../components/NavBar.vue';
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
 </script>
@@ -76,7 +81,7 @@ import TableOfContents from '../components/TableOfContents.vue';
   /* マージンの設定 */
   margin: 20px;
   /* パディング */
-  padding: 40px;
+  padding:20px 40px;
   /* 背景を白にする */
   background-color: #fff;
   /* 角を丸める */
