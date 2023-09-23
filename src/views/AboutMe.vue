@@ -3,6 +3,7 @@
     <!-- ナビゲーションバー -->
     <NavBar />
   </div>
+  <!-- flex-content -->
   <div class="all-contents">
     <!-- サイドバー -->
     <SideBar />
