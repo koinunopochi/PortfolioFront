@@ -1,30 +1,55 @@
 <template>
   <div class="nav-bar">
-    <a href="/">HOME</a>
-    <a href="/about-me">ABOUT ME</a>
+    <v-app>
+      <v-navigation-drawer v-model="drawer" app>
+        <!-- ドロワー内のコンテンツ -->
+        <v-list>
+          <v-list-item-group>
+            <v-list-item
+              v-for="item in items"
+              :key="item.title"
+              @click="navigate(item.link)"
+            >
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
+
+      <v-app-bar app>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>Portfolio</v-toolbar-title>
+      </v-app-bar>
+
+      <v-main>
+        <!-- メインコンテンツ -->
+      </v-main>
+    </v-app>
   </div>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const drawer = ref(false);
+const items = [
+  { title: 'Home', link: '/' },
+  { title: 'About Me', link: '/about-me' },
+];
+const router = useRouter();
+
+const navigate = (link: string) => {
+  drawer.value = false;
+  router.push(link);
+};
+</script>
+
 <style scoped>
 .nav-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  width: 100%;
   height: 50px;
   background-color: #fff;
-  padding-top: 10px;
   padding-right: 20px;
-}
-.nav-bar a {
-  margin-right: 20px;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #545555;
-  transition: color 0.3s, text-decoration 0.3s;
-}
-.nav-bar a:hover {
-  text-decoration: underline;
+  margin-bottom: 20px;
 }
 </style>
