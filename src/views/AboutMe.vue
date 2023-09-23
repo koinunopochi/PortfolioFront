@@ -115,7 +115,7 @@
       </div>
     </div>
     <!-- 目次 -->
-    <TableOfContents :items="tableOfContentsItems"/>
+    <TableOfContents :items="tableOfContentsItems" />
   </div>
 </template>
 
@@ -171,6 +171,7 @@ h3 {
   background-color: #fff;
   /* 角を丸める */
   border-radius: 8px;
+  margin-bottom: 20px;
 }
 .contents {
   margin-bottom: 30px;
