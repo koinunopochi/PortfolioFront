@@ -8,10 +8,6 @@
     <!-- サイドバー -->
     <SideBar />
     <div class="about">
-      <div class="title">
-        <h1>岡山　晃大</h1>
-        <!-- <p>ポートフォリオサイト</p> -->
-      </div>
 
       <!-- プロフィール -->
       <div id="profile">
