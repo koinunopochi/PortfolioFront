@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import IndexView from '../views/IndexView.vue';
 import ProjectsViewVue from '@/views/ProjectsView.vue';
 import AutoPic from '@/views/projects/AutoPic.vue';
+import NotFound from '@/views/NotFound.vue'; 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,11 +31,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutMe.vue'),
     },
-    // {
-    //   path: '/index',
-    //   name: 'index',
-    //   component: IndexView,
-    // },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFound, 
+    },
   ],
 });
 
