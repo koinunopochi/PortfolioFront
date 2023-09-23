@@ -1,20 +1,29 @@
 <template>
   <div class="all-contents">
-        <!-- サイドバー -->
+    <!-- サイドバー -->
     <SideBar />
     <div class="main projects">
       <h1 class="title" id="projects">PROJECTS</h1>
-      <div class="contents">
+      <div class="">
         <h2>プロジェクト</h2>
-        <p>現在、プロジェクトはありません。</p>
+        <div class="contents" id="auto_pic">
+          <button @click="move('/projects/auto-pic')">
+            <h3>AutoPic</h3>
+            <h4>概要</h4>
+            <p>自動で画像を撮影するプログラム</p>
+          </button>
+        </div>
       </div>
     </div>
-    <TableOfContents :items="tableOfContentsItems"/>
+    <TableOfContents :items="tableOfContentsItems" />
   </div>
 </template>
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
+
+const router = useRouter();
 
 const tableOfContentsItems = [
   {
@@ -22,7 +31,24 @@ const tableOfContentsItems = [
     name: 'プロジェクト',
   },
 ];
+
+const move = (path: string) => {
+  router.push(path); // pushメソッドでルートを変更
+}
 </script>
 <style scoped>
 @import '../assets/main.css';
+</style>
+<style scoped>
+.contents {
+  /* 線を入れる */
+  border: solid 3px #a7ff9d;
+  /* 余白を入れる */
+  padding: 10px;
+  /* 角を丸くする */
+  border-radius: 8px;
+}
+.contents:hover{
+  background-color: #a7ff9d;
+}
 </style>

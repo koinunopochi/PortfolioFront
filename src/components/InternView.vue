@@ -125,8 +125,6 @@
   color: #333; /* 文字色 */
 }
 
-
-
 .intern.child {
   background-color: #fafafa; /* 子要素の背景色 */
   padding: 15px; /* 子要素の内側の余白 */
@@ -158,5 +156,8 @@
 
 li {
   margin-bottom: 10px; /* リストアイテムの下側の余白 */
+}
+.contents {
+  margin-bottom: 30px;
 }
 </style>
