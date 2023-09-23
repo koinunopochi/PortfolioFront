@@ -15,16 +15,24 @@
         <h2>プロフィール</h2>
         <div class="contents">
           <p class="name">岡山 晃大</p>
-          <p class="birth-date">2002年12月05日生まれ</p>
-          <p class="age">20歳</p>
-          <p class="school">明治学院大学　社会学部　社会福祉学科　3年</p>
+          <ul>
+            <li>
+              <p class="birth-date">2002年12月05日生まれ</p>
+            </li>
+            <li>
+              <p class="age">20歳</p>
+            </li>
+            <li>
+              <p class="school">明治学院大学　社会学部　社会福祉学科　3年</p>
+            </li>
+          </ul>
         </div>
       </div>
 
       <!-- 経歴 -->
       <div>
         <h2 id="career">経歴</h2>
-        <table class="career-table">
+        <table class="career-table contents">
           <thead>
             <tr>
               <th>年月</th>
@@ -55,6 +63,12 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- 利用可能技術 -->
+      <div class="">
+        <h2>利用可能技術</h2>
+        <div class="contents"></div>
       </div>
     </div>
     <!-- 目次 -->
@@ -100,6 +114,9 @@ h2 {
 }
 .contents {
   margin-bottom: 10px;
+}
+.contents ul {
+  margin-left: 20px;
 }
 .name {
   font-size: 20px;
