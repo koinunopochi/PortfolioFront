@@ -1,7 +1,5 @@
 <template>
   <div class="about-me">
-    <!-- ナビゲーションバー -->
-    <NavBar />
   </div>
   <!-- flex-content -->
   <div class="all-contents">
@@ -120,7 +118,6 @@
 </template>
 
 <script setup lang="ts">
-import NavBar from '../components/NavBar.vue';
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
 
