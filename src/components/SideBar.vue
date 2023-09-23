@@ -3,9 +3,27 @@
     <div class="content">
       <h3>Contact</h3>
       <div class="links">
-        <a href="https://github.com/koinunopochi"> GitHub </a>
-        <a href="https://twitter.com/a1a2a3b1b2b3b4"> X(旧Twitter) </a>
-        <a href="https://qiita.com/koinunopochi"> Qiita </a>
+        <a
+          href="https://github.com/koinunopochi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://twitter.com/a1a2a3b1b2b3b4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          X(旧Twitter)
+        </a>
+        <a
+          href="https://qiita.com/koinunopochi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Qiita
+        </a>
       </div>
     </div>
   </div>
@@ -40,5 +58,4 @@
   color: #218838;
   text-decoration: underline;
 }
-
 </style>
