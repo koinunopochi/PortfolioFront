@@ -79,6 +79,7 @@
                 <li>TypeScript</li>
                 <li>Java</li>
                 <li>Python</li>
+                <li>VBA</li>
               </ul>
             </div>
             <div class="flame-work">
@@ -87,6 +88,7 @@
                 <li>Vue.js</li>
                 <li>Express.js</li>
                 <li>Spring Boot</li>
+                <li>BootStrap</li>
               </ul>
             </div>
           </div>
