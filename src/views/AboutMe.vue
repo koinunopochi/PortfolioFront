@@ -69,6 +69,10 @@ import TableOfContents from '../components/TableOfContents.vue';
 </script>
 
 <style>
+h1{
+  /* 中心に配置 */
+  text-align: center;
+}
 h1,
 h2 {
   font-weight: bold;
