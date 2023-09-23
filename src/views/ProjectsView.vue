@@ -6,26 +6,37 @@
       <h1 class="title" id="projects">PROJECTS</h1>
       <div class="">
         <h2>プロジェクト</h2>
-        <div class="contents" id="auto_pic">
-          <button @click="move('/projects/auto-pic')">
-            <h3>AutoPic</h3>
-            <h4>概要</h4>
-            <p>自動で画像を撮影するプログラム</p>
-          </button>
+        <div
+          class="contents"
+          id="portfolio"
+          @click="move('/projects/portfolio')"
+        >
+          <h3>Portfolio</h3>
+          <h4>概要</h4>
+          <p>このサイト</p>
         </div>
-        <div class="contents" id="youtube_text">
-          <button @click="move('/projects/youtube-text')">
-            <h3>YoutubeText</h3>
-            <h4>概要</h4>
-            <p>Youtubeの字幕から、ChatGPTにYoutubeに関する質問を行うプログラム</p>
-          </button>
+        <div class="contents" id="auto_pic" @click="move('/projects/auto-pic')">
+          <h3>AutoPic</h3>
+          <h4>概要</h4>
+          <p>自動で画像を撮影するプログラム</p>
         </div>
-        <div class="contents" id="node_summary">
-          <button @click="move('/projects/node-summary')">
-            <h3>NodeDocSummary_GPT</h3>
-            <h4>概要</h4>
-            <p>Node.jsのドキュメントを要約したりして、質問に答えるプログラム</p>
-          </button>
+        <div
+          class="contents"
+          id="youtube_text"
+          @click="move('/projects/youtube-text')"
+        >
+          <h3>YoutubeText</h3>
+          <h4>概要</h4>
+          <p>Youtubeの字幕から、ChatGPTにYoutubeに関する質問を行うプログラム</p>
+        </div>
+        <div
+          class="contents"
+          id="node_summary"
+          @click="move('/projects/node-summary')"
+        >
+          <h3>NodeDocSummary_GPT</h3>
+          <h4>概要</h4>
+          <p>Node.jsのドキュメントを要約したりして、質問に答えるプログラム</p>
         </div>
       </div>
     </div>
@@ -60,7 +71,7 @@ const tableOfContentsItems = [
 
 const move = (path: string) => {
   router.push(path); // pushメソッドでルートを変更
-}
+};
 </script>
 <style scoped>
 @import '../assets/main.css';
@@ -77,7 +88,7 @@ const move = (path: string) => {
   /* 中央に配置 */
   text-align: center;
 }
-.contents:hover{
+.contents:hover {
   background-color: #a7ff9d;
 }
 </style>
