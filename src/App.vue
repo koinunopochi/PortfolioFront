@@ -23,7 +23,7 @@
         <v-toolbar-title>Portfolio</v-toolbar-title>
       </v-app-bar>
 
-      <v-main>
+      <v-main class="main">
         <RouterView />
       </v-main>
     </v-app>
@@ -40,6 +40,7 @@ const drawer = ref(false);
 const items = [
   { title: 'Home', link: '/' },
   { title: 'About Me', link: '/about-me' },
+  { title: 'Projects', link: '/projects' },
 ];
 const router = useRouter();
 
@@ -53,7 +54,10 @@ const navigate = (link: string) => {
 .nav-bar {
   height: 50px;
   background-color: #fff;
-  padding-right: 20px;
   margin-bottom: 20px;
+}
+.main{
+    /* 背景色 */
+  background-color: #f5f6f6;
 }
 </style>
