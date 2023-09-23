@@ -127,7 +127,8 @@ import TableOfContents from '../components/TableOfContents.vue';
 
 <style>
 h1,
-h2 {
+h2,
+h3 {
   font-weight: bold;
   margin-bottom: 10px;
   /* 区切り線 */
