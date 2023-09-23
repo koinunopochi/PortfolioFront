@@ -1,5 +1,4 @@
 <template>
-  <div class="about-me"></div>
   <!-- flex-content -->
   <div class="all-contents">
     <!-- サイドバー -->
@@ -161,8 +160,6 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  /* 背景色 */
-  background-color: #f5f6f6;
 }
 .about {
   /* マージンの設定 */
