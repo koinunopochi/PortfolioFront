@@ -8,6 +8,7 @@
     <!-- サイドバー -->
     <SideBar />
     <div class="about">
+      <h1>ABOUT ME</h1>
 
       <!-- プロフィール -->
       <div id="profile">
