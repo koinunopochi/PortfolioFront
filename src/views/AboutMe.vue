@@ -66,7 +66,7 @@
       </div>
 
       <!-- 利用可能技術 -->
-      <div class="">
+      <div id="skill">
         <h2>利用可能技術</h2>
         <div class="contents">
           <div class="contents-flex">
@@ -115,7 +115,7 @@
       </div>
     </div>
     <!-- 目次 -->
-    <TableOfContents />
+    <TableOfContents :items="tableOfContentsItems"/>
   </div>
 </template>
 
@@ -123,6 +123,21 @@
 import NavBar from '../components/NavBar.vue';
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
+
+const tableOfContentsItems = [
+  {
+    id: 'profile',
+    name: 'プロフィール',
+  },
+  {
+    id: 'career',
+    name: '経歴',
+  },
+  {
+    id: 'skill',
+    name: '利用可能技術',
+  },
+];
 </script>
 
 <style>
