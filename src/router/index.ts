@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-// import HomeView from '../views/HomeView.vue'
 import IndexView from '../views/IndexView.vue';
 import ProjectsViewVue from '@/views/ProjectsView.vue';
 import AutoPic from '@/views/projects/AutoPic.vue';
-import NotFound from '@/views/NotFound.vue'; 
+import NotFound from '@/views/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,7 +33,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: NotFound, 
+      component: NotFound,
     },
   ],
 });
