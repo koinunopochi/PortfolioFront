@@ -6,7 +6,7 @@ import NotFound from '@/views/NotFound.vue';
 import UnderConstructionVue from '@/views/UnderConstruction.vue';
 import LoginView from '@/views/auth/LoginView.vue';
 
-import {refresh} from '@/utils/submit';
+import { refresh } from '@/utils/submit';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,9 +55,18 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path:"/project-index",
-      name:"project-index",
+      path: '/project-blog',
+      name: 'project-blog-index',
       component: () => import('../views/BlogIndex.vue'),
+    },
+    {
+      path: '/project-blog/:id',
+      name: 'project-blog',
+      component: () => import('../views/BlogView.vue'),
+    },{
+      path: '/project-blog/post',
+      name: 'project-blog-post',
+      component: () => import('../views/BlogPost.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
@@ -84,8 +93,5 @@ router.beforeEach(async (to, from, next) => {
     return next({ name: 'login' });
   }
 });
-
-
-
 
 export default router;
