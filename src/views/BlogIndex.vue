@@ -62,7 +62,7 @@ getContents();
 
 const move = (id: string) => {
   console.log(id);
-  router.push(`/blog/${id}`);
+  router.push(`/project-blog/${id}`);
 };
 </script>
 <style scoped>
