@@ -3,27 +3,8 @@
 <template>
   <div class="nav-bar">
     <v-app>
-      <v-navigation-drawer v-model="drawer" app>
-        <!-- ドロワー内のコンテンツ -->
-        <v-list>
-          <v-list-item-group>
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              @click="navigate(item.link)"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
-
-      <v-app-bar app>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Portfolio</v-toolbar-title>
-      </v-app-bar>
-
       <v-main class="main">
+        <NavBar v-if="showNavBar" />
         <RouterView />
       </v-main>
     </v-app>
@@ -33,29 +14,29 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed } from 'vue';
+// import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const drawer = ref(false);
-const items = [
-  { title: 'Home', link: '/' },
-  { title: 'About Me', link: '/about-me' },
-  { title: 'Projects', link: '/projects' },
-];
-const router = useRouter();
+import NavBar from './components/NavBar.vue';
 
-const navigate = (link: string) => {
-  drawer.value = false;
-  router.push(link);
-};
+const route = useRoute();
+
+const showNavBar = computed(() => {
+  if(route.name === 'login'|| route.name === 'not-found'){
+    return false;
+  }else{
+    return true;
+  }
+});
 </script>
 
 <style scoped>
-.nav-bar {
+/* .nav-bar {
   height: 50px;
   background-color: #fff;
   margin-bottom: 20px;
-}
+} */
 .main{
     /* 背景色 */
   background-color: #f5f6f6;
