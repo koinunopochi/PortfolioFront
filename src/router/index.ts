@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: IndexView,
+      component: UnderConstructionVue,
     },
     {
       path: '/projects',
@@ -63,7 +63,8 @@ const router = createRouter({
       path: '/project-blog/:id',
       name: 'project-blog',
       component: () => import('../views/BlogView.vue'),
-    },{
+    },
+    {
       path: '/project-blog/post',
       name: 'project-blog-post',
       component: () => import('../views/BlogPost.vue'),
