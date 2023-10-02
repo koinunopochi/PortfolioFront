@@ -4,6 +4,9 @@ import ProjectsViewVue from '@/views/ProjectsView.vue';
 import AutoPic from '@/views/projects/AutoPic.vue';
 import NotFound from '@/views/NotFound.vue';
 import UnderConstructionVue from '@/views/UnderConstruction.vue';
+import LoginView from '@/views/auth/LoginView.vue';
+
+import {refresh} from '@/utils/submit';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,11 +50,42 @@ const router = createRouter({
       component: UnderConstructionVue,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path:"/project-index",
+      name:"project-index",
+      component: () => import('../views/BlogIndex.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFound,
     },
   ],
 });
+
+router.beforeEach(async (to, from, next) => {
+  // 'login'と'not-found'ルートではガードをバイパス
+  if (to.name === 'login' || to.name === 'not-found') {
+    return next();
+  }
+
+  try {
+    // refresh関数の呼び出し
+    const successfulRefresh = await refresh();
+    // refreshが成功した場合、通常通りルートにナビゲート
+    if (successfulRefresh) return next();
+  } catch (error) {
+    console.error(error);
+    // エラーが発生した場合、ログインページにリダイレクト
+    return next({ name: 'login' });
+  }
+});
+
+
+
 
 export default router;
