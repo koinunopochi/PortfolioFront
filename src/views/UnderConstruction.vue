@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container class="fill-height main" fluid>
     <v-row align="center" justify="center">
       <v-col class="text-center">
         <v-icon large color="warning">mdi-alert</v-icon>
@@ -14,3 +14,8 @@ export default {
   name: 'UnderConstruction',
 };
 </script>
+<style scoped>
+.main{
+  margin-top: 0;
+}
+</style>
