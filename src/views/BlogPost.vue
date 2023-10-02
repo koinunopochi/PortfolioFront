@@ -56,6 +56,7 @@ const submit = async() => {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* 影をつける */
   max-width: 600px; /* 最大幅を設定 */
   margin: auto; /* 中央寄せ */
+  margin-top: 50px;
 }
 input[type='text'],
 textarea{
@@ -77,6 +78,7 @@ button {
   border: none; /* ボーダーを無効に */
   cursor: pointer; /* カーソルをポインターに */
   border-radius: 5px; /* ボタンの角を丸める */
+  width: 100%;
 }
 
 button:hover {
