@@ -1,16 +1,13 @@
-
-
 <template>
   <div class="nav-bar">
     <v-app>
       <v-main class="main">
         <NavBar v-if="showNavBar" />
-        <RouterView />
+        <RouterView class="main-content"/>
       </v-main>
     </v-app>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
@@ -23,22 +20,21 @@ import NavBar from './components/NavBar.vue';
 const route = useRoute();
 
 const showNavBar = computed(() => {
-  if(route.name === 'login'|| route.name === 'not-found'){
+  if (route.name === 'login' || route.name === 'not-found') {
     return false;
-  }else{
+  } else {
     return true;
   }
 });
 </script>
 
 <style scoped>
-/* .nav-bar {
-  height: 50px;
-  background-color: #fff;
-  margin-bottom: 20px;
-} */
-.main{
-    /* 背景色 */
+.main {
+  /* 背景色 */
   background-color: #f5f6f6;
 }
+.main-content {
+  margin-top: 50px;
+}
 </style>
+
