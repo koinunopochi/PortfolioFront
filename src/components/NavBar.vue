@@ -1,25 +1,38 @@
 <!-- NavBar.vue -->
 <template>
-  <div class="nav-bar">
-    <div @click="toggleSidebar" class="hamburger">
+  <div @click="checkCloseSidebar" class="nav-bar">
+    <div @click.stop="toggleSidebar" class="hamburger">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </div>
-    <div v-if="isSidebarOpen" class="sidebar">
+    <div :class="{ 'sidebar-open': isSidebarOpen }" class="sidebar">
       <ul>
-        <li @click="navigate('/home')">Home</li>
-        <li @click="navigate('/about')">About</li>
-        <li @click="navigate('/contact')">Contact</li>
-        <!-- 他のリスト項目を追加 -->
+        <li v-for="route in routeList" :key="route.path" @click="navigate(route.path)">
+          {{ route.name }}
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+
+const routeList = [
+  {
+    path: '/',
+    name: 'Home',
+  },
+  {
+    path: '/about-me',
+    name: 'AboutMe',
+  },
+  {
+    path: '/project-blog',
+    name: 'ProjectBlog',
+  },]
 
 const router = useRouter();
 const isSidebarOpen = ref(false);
@@ -30,8 +43,29 @@ const toggleSidebar = () => {
 
 const navigate = (path: string) => {
   router.push(path);
-  isSidebarOpen.value = false; // ナビゲーション後にサイドバーを閉じる
+  isSidebarOpen.value = false;
 };
+
+const closeSidebar = () => {
+  isSidebarOpen.value = false;
+};
+
+const checkCloseSidebar = (event: Event) => {
+  const sidebarElement = document.querySelector('.sidebar');
+  const clickedInsideSidebar = sidebarElement?.contains(event.target as Node);
+
+  if (!clickedInsideSidebar && isSidebarOpen.value) {
+    closeSidebar();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', checkCloseSidebar);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', checkCloseSidebar);
+});
 </script>
 
 <style scoped>
@@ -40,7 +74,7 @@ const navigate = (path: string) => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
+  height: 40px;
   background-color: #333;
   color: #fff;
   z-index: 1000;
@@ -67,10 +101,12 @@ const navigate = (path: string) => {
   left: 0;
   width: 250px;
   height: 100vh;
-  background-color: #eee;
+  background-color: #333;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
 }
 
 .sidebar ul {
@@ -87,5 +123,7 @@ const navigate = (path: string) => {
 .sidebar li:hover {
   background-color: #ddd;
 }
+.nav-bar .sidebar-open {
+  transform: translateX(0);
+}
 </style>
-
