@@ -9,7 +9,7 @@
         <div class="content" :id="content._id" @click="move(content._id)">
           <h3>{{ content.title }}</h3>
           <h4>概要</h4>
-          <p>{{ content.description }}</p>
+          <p>{{ content.overview }}</p>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@ const contents = ref([
   {
     _id: '1afodivjadf',
     title: 'ERROR 404: Page Not Found',
-    description: 'ページが見つかりませんでした',
+    overview: 'ページが見つかりませんでした',
   },
 ]);
 
