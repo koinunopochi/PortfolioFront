@@ -23,7 +23,7 @@
 
     <!-- 最新のプロジェクトセクション -->
     <section class="projects-section">
-      <h2 class="section-title">最新のプロジェクト</h2>
+      <h2 class="section-title">最新のプロジェクト・ブログ</h2>
       <div class="project-cards">
         <!-- プロジェクトのカードを繰り返し表示 -->
         <div
