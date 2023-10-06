@@ -17,43 +17,63 @@ const { items } = defineProps(['items']);
 
 <style scoped>
 .table-of-contents {
-  /* マージンの設定 */
   margin-top: 20px;
   margin-right: 40px;
-  /* 最小サイズ */
   min-width: 200px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);  */
+  background-color: #fff; /* 白背景 */
+  /* border: solid 1px #e2e2e2;  */
+  transition: box-shadow 0.3s; /* ホバーエフェクトの追加 */
+  position: sticky; /* <- これを追加 */
+  top: 70px; /* <- 上からの距離を指定。この場合、70px */
+  max-height: 50vh; /* 画面の高さの50%に最大高さを制限 */
+  overflow-y: auto; /* オーバーフロー時に縦スクロールバーを表示 */
+}
 
-  /* 角を丸める */
-  border-radius: 5px;
-  /* 細い線を書く */
-  border: solid 1px #ddd;
+.table-of-contents:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* ホバー時の影を変更 */
 }
 
 .table-of-contents ul {
-  /* リストのマージンとパディングをリセット */
-  padding: 0;
-  margin: 10px;
-  /* リストのスタイルタイプをなしに */
+  padding: 20px;
+  margin: 0;
   list-style: none;
 }
 
 .table-of-contents li {
-  /* リスト項目のマージン設定 */
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .table-of-contents a {
-  /* リンクテキストの色 */
-  color: #545555;
-  /* テキストの装飾をなしに */
+  color: #333; /* より濃い色 */
   text-decoration: none;
-  /* ホバーエフェクトの追加 */
+  font-weight: 500; /* 太字に */
   transition: color 0.3s, text-decoration 0.3s;
+  position: relative; /* 下線エフェクトのための基準 */
+  padding: 5px 0; /* 空間の追加 */
 }
+
+.table-of-contents a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #84c357; /* 緑色 */
+  transition: width 0.3s;
+}
+
 .table-of-contents a:hover {
-  text-decoration: underline;
+  color: #84c357; /* ホバー時のリンク色を緑に */
 }
+
+.table-of-contents a:hover::after {
+  width: 100%; /* 下線エフェクト */
+}
+
 .table-of-contents li:hover {
-  background-color: #d3d3d3;
+  background-color: transparent; /* 背景色のホバーを削除 */
 }
 </style>
