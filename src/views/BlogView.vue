@@ -3,7 +3,7 @@
   <div class="all-contents">
     <!-- サイドバー -->
     <SideBar />
-    <div class="main projects">
+    <div class="main projects md">
       <div class="header-wrapper">
         <h1>{{ contents.title }}</h1>
         <button v-if="is_admin" class="btn danger" @click="deleteSubmit()">削除</button>
@@ -108,21 +108,6 @@ onMounted(async() => {
 </script>
 <style scoped>
 @import '../assets/main.css';
-div.contents > ul {
-  /* コンテンツの中にある、ulの位置を調整したい */
-  list-style: none;
-  padding: 10px;
-  margin: 10px;
-
-}
-div.contents > ul > li {
-  /* コンテンツの中にある、ulの位置を調整したい */
-  list-style: none;
-  padding: 10px;
-  margin: 10px;
-  
-}
-
 .header-wrapper {
   display: flex;
   justify-content: space-between;
@@ -156,31 +141,5 @@ div.contents > ul > li {
 }
 </style>
 <style>
-.contents h1,
-.contents h2,
-.contents h3,
-.contents h4,
-.contents h5,
-.contents h6{
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-bottom: solid 1px #ddd;
-}
-.contents{
-  margin: 10px 5px;
-  padding: 10px;
-  border-radius: 5px;
-  /* background-color: #f5f5f5; */
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.contents>ul,
-.contents>ol{
-  margin-bottom: 5px;
-  padding-left: 20px;
-  padding-bottom: 5px;
-  border-radius: 5px;
-}
+@import '../assets/blog.css';
 </style>
