@@ -37,17 +37,30 @@
     <section class="social-links-section">
       <h3>Follow Me</h3>
       <div class="social-links">
-        <a href="https://twitter.com/a1a2a3b1b2b3b4" class="social-link twitter"
+        <a
+          href="https://twitter.com/a1a2a3b1b2b3b4"
+          class="social-link twitter"
+          target="_blank"
+          rel="noopener noreferrer"
           >X(旧Twitter)</a
         >
-        <a href="https://qiita.com/koinunopochi" class="social-link qiita"
+        <a
+          href="https://qiita.com/koinunopochi"
+          class="social-link qiita"
+          target="_blank"
+          rel="noopener noreferrer"
           >Qiita</a
         >
-        <a href="https://github.com/koinunopochi" class="social-link github"
+        <a
+          href="https://github.com/koinunopochi"
+          class="social-link github"
+          target="_blank"
+          rel="noopener noreferrer"
           >GitHub</a
         >
       </div>
     </section>
+
     <InformationModal
       :type="type"
       v-model:isOpen="showModal"
@@ -99,22 +112,22 @@ watch(requirements, (newValue) => {
   }
 });
 
-const submit = async() => {
-  try{
-  const res = await easyFetch("POST",new URL(apiUrl+"/contact"),{
-    email:email.value,
-    company:company.value,
-    person:person.value,
-    content:requirements.value
-  })
-  type.value = "success";
-  showModal.value = true;
-  message.value = "送信に成功しました。"
-  }catch(e){
-    console.log(e)
-    type.value = "error";
+const submit = async () => {
+  try {
+    const res = await easyFetch('POST', new URL(apiUrl + '/contact'), {
+      email: email.value,
+      company: company.value,
+      person: person.value,
+      content: requirements.value,
+    });
+    type.value = 'success';
     showModal.value = true;
-    message.value = "送信に失敗しました。"
+    message.value = '送信に成功しました。';
+  } catch (e) {
+    console.log(e);
+    type.value = 'error';
+    showModal.value = true;
+    message.value = '送信に失敗しました。';
   }
 };
 </script>
