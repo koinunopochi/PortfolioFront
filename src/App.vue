@@ -3,7 +3,9 @@
     <v-app>
       <v-main class="main">
         <NavBar v-if="showNavBar" />
-        <RouterView class="main-content"/>
+        <div class="main-content">
+          <RouterView  />
+        </div>
       </v-main>
     </v-app>
   </div>
@@ -37,4 +39,3 @@ const showNavBar = computed(() => {
   margin-top: 50px;
 }
 </style>
-
