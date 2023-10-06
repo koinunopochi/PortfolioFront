@@ -1,0 +1,27 @@
+.md>.contents h1,
+.md>.contents h2,
+.md>.contents h3,
+.md>.contents h4,
+.md>.contents h5,
+.md>.contents h6{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #ddd;
+}
+.md>.contents{
+  margin: 10px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  /* background-color: #f5f5f5; */
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.md>.contents>ul,
+.md>.contents>ol{
+  margin-bottom: 5px;
+  padding-left: 20px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
