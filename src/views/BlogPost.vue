@@ -42,7 +42,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue';
+import { onMounted, ref, watchEffect,watch } from 'vue';
 import { easyFetch } from '../utils/submit';
 import { marked } from 'marked';
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
@@ -58,6 +58,7 @@ const contents = ref([
     _id: '1afodivjadf',
     title: 'ERROR 404: Page Not Found',
     overview: 'ページが見つかりませんでした',
+    content: 'ページが見つかりませんでした',
   },
 ]);
 
@@ -118,6 +119,23 @@ const getContents = async () => {
     console.error('Failed to fetch contents', error);
   }
 };
+
+watch(selectedDocId, (newValue, oldValue) => {
+  // ここに変更時のロジックを書く
+  if(newValue === 'new'){
+    title.value = '';
+    description.value = '';
+    content.value = '';
+  } else {
+    const selectedDoc = contents.value.find((doc) => doc._id == newValue);
+    if(selectedDoc){
+      title.value = selectedDoc.title;
+      description.value = selectedDoc.overview;
+      content.value = selectedDoc.content;
+    }
+  }
+});
+
 
 onMounted(() => {
   getContents();
