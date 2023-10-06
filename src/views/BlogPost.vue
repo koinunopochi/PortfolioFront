@@ -5,6 +5,17 @@
       <h1>BlogPost</h1>
       <div class="form">
         <div class="form-item">
+          <label for="docSelect">更新docs</label>
+          <br />
+          <select id="docSelect" v-model="selectedDocId">
+            <option value="new">新規作成</option>
+            <option v-for="doc in contents" :key="doc._id" :value="doc._id">
+              {{ doc.title || 'No Title' }}
+              <!-- タイトルが空の場合 'No Title' を表示 -->
+            </option>
+          </select>
+        </div>
+        <div class="form-item">
           <label for="title">タイトル</label>
           <input type="text" id="title" v-model="title" />
         </div>
@@ -31,7 +42,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
 import { easyFetch } from '../utils/submit';
 import { marked } from 'marked';
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
@@ -39,6 +50,16 @@ const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 const title = ref('');
 const description = ref('');
 const content = ref('');
+
+const selectedDocId = ref('new'); // 選択されたドキュメントのID
+
+const contents = ref([
+  {
+    _id: '1afodivjadf',
+    title: 'ERROR 404: Page Not Found',
+    overview: 'ページが見つかりませんでした',
+  },
+]);
 
 const error_message = ref('');
 
@@ -54,8 +75,16 @@ const submit = async () => {
     if (!isCheckContents()) {
       error_message.value = ' この値は必須です';
       return;
+    }else{
+      error_message.value = '';
     }
-    const res = await easyFetch('POST', new URL(apiUrl + '/blog'), {
+    let method: 'POST' | 'PUT' | 'GET' | 'DELETE' = 'POST';
+    let url = '/blog'
+    if (selectedDocId.value != 'new') {
+      method = 'PUT';
+      url = "/blog/"+selectedDocId.value
+    }
+    const res = await easyFetch(method, new URL(apiUrl + url), {
       title: title.value,
       overview: description.value,
       content: content.value,
@@ -74,6 +103,24 @@ const convertedMarkdown = ref('');
 // watchとの違いが不明
 watchEffect(() => {
   convertedMarkdown.value = marked(content.value);
+});
+
+const getContents = async () => {
+  try {
+    const res = await easyFetch('GET', new URL(`${apiUrl}/blog`), {});
+    if (res.ok) {
+      contents.value = await res.json();
+      console.log(contents.value);
+    } else {
+      console.error('API Request Failed', await res.text());
+    }
+  } catch (error) {
+    console.error('Failed to fetch contents', error);
+  }
+};
+
+onMounted(() => {
+  getContents();
 });
 </script>
 <style scoped>
@@ -130,7 +177,7 @@ button {
 button:hover {
   background-color: #45a049; /* ホバー時の背景色を設定 */
 }
-.error-message{
+.error-message {
   color: red;
 }
 </style>
