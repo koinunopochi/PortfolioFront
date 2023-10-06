@@ -7,7 +7,7 @@
         <div class="form-item">
           <label for="docSelect">更新docs</label>
           <br />
-          <select id="docSelect" v-model="selectedDocId">
+          <select id="docSelect" class="docSelect" v-model="selectedDocId">
             <option value="new">新規作成</option>
             <option v-for="doc in contents" :key="doc._id" :value="doc._id">
               {{ doc.title || 'No Title' }}
@@ -28,7 +28,7 @@
           <textarea id="content" v-model="content"></textarea>
         </div>
         <div class="form-item">
-          <button @click="submit">送信</button>
+          <button @click="submit">保存</button>
           <p class="error-message">{{ error_message }}</p>
         </div>
       </div>
@@ -197,6 +197,15 @@ button:hover {
 }
 .error-message {
   color: red;
+}
+
+.docSelect {
+  width: 100%;  /* select要素の横幅を親要素に合わせる */
+  box-sizing: border-box;  /* paddingとborderを含めて横幅を100%にする */
+  border: none;  /* 既存のボーダーを削除 */
+  border-bottom: 1px solid #ddd;  /* 下線を引く */
+  font-size: 12px;
+  padding: 10px
 }
 </style>
 <style scoped>
