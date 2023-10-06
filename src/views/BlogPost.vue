@@ -37,19 +37,26 @@
       <h1 v-if="title != ''">{{ title }}</h1>
       <h3 v-if="description != ''">概要</h3>
       <p>{{ description }}</p>
-      <div v-html="convertedMarkdown"></div>
+      <div class="contents" v-html="convertedMarkdown"></div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, watchEffect,watch } from 'vue';
+import { onMounted, ref, watchEffect, watch } from 'vue';
 import { easyFetch } from '../utils/submit';
 import { marked } from 'marked';
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
 const title = ref('');
 const description = ref('');
-const content = ref('');
+const content = ref(`### 使用技術
+- Vue.js
+### 機能
+- ブログの作成
+- ブログの編集
+### 工夫した点
+### 苦労した点
+### 今後の課題`);
 
 const selectedDocId = ref('new'); // 選択されたドキュメントのID
 
@@ -76,14 +83,14 @@ const submit = async () => {
     if (!isCheckContents()) {
       error_message.value = ' この値は必須です';
       return;
-    }else{
+    } else {
       error_message.value = '';
     }
     let method: 'POST' | 'PUT' | 'GET' | 'DELETE' = 'POST';
-    let url = '/blog'
+    let url = '/blog';
     if (selectedDocId.value != 'new') {
       method = 'PUT';
-      url = "/blog/"+selectedDocId.value
+      url = '/blog/' + selectedDocId.value;
     }
     const res = await easyFetch(method, new URL(apiUrl + url), {
       title: title.value,
@@ -122,20 +129,26 @@ const getContents = async () => {
 
 watch(selectedDocId, (newValue, oldValue) => {
   // ここに変更時のロジックを書く
-  if(newValue === 'new'){
+  if (newValue === 'new') {
     title.value = '';
     description.value = '';
-    content.value = '';
+    content.value = `### 使用技術
+- Vue.js
+### 機能
+- ブログの作成
+- ブログの編集
+### 工夫した点
+### 苦労した点
+### 今後の課題`;
   } else {
     const selectedDoc = contents.value.find((doc) => doc._id == newValue);
-    if(selectedDoc){
+    if (selectedDoc) {
       title.value = selectedDoc.title;
       description.value = selectedDoc.overview;
       content.value = selectedDoc.content;
     }
   }
 });
-
 
 onMounted(() => {
   getContents();
@@ -200,14 +213,17 @@ button:hover {
 }
 
 .docSelect {
-  width: 100%;  /* select要素の横幅を親要素に合わせる */
-  box-sizing: border-box;  /* paddingとborderを含めて横幅を100%にする */
-  border: none;  /* 既存のボーダーを削除 */
-  border-bottom: 1px solid #ddd;  /* 下線を引く */
+  width: 100%; /* select要素の横幅を親要素に合わせる */
+  box-sizing: border-box; /* paddingとborderを含めて横幅を100%にする */
+  border: none; /* 既存のボーダーを削除 */
+  border-bottom: 1px solid #ddd; /* 下線を引く */
   font-size: 12px;
-  padding: 10px
+  padding: 10px;
 }
 </style>
 <style scoped>
 @import '../assets/main.css';
+</style>
+<style>
+@import '../assets/blog.css';
 </style>
