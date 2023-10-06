@@ -6,6 +6,7 @@
       <div class="line"></div>
       <div class="line"></div>
     </div>
+    <div class="btn" @click="logout()">LOGOUT</div>
     <div :class="{ 'sidebar-open': isSidebarOpen }" class="sidebar">
       <ul>
         <li
@@ -16,12 +17,12 @@
           {{ route.name }}
         </li>
       </ul>
-      <hr v-if="is_admin"/>
+      <hr v-if="is_admin" />
       <ul v-if="is_admin">
         <li
           v-for="admin_route in admin_list"
           :key="admin_route.path"
-          @click="navigate(admin_route.path);"
+          @click="navigate(admin_route.path)"
         >
           {{ admin_route.name }}
         </li>
@@ -34,7 +35,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { isAdmin } from '../utils/checkAdmin';
-
+import { logout } from '../utils/logout';
 const route_list = [
   {
     path: '/',
@@ -47,12 +48,17 @@ const route_list = [
   {
     path: '/project-blog',
     name: 'ProjectBlog',
-  },{
+  },
+  {
     path: '/contact',
     name: 'Contact',
-  }
+  },
 ];
-const admin_list = [{ path: '/project-blog/post', name: '新規作成・更新' }];
+const admin_list = [
+  { path: '/project-blog/post', name: '新規作成・更新' },
+  { path: '/create/account', name: 'アカウント作成' },
+  { path: '/delete/account', name: 'アカウント削除' },
+];
 const router = useRouter();
 const isSidebarOpen = ref(false);
 const is_admin = ref(false);
@@ -90,6 +96,19 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: red;
+  transition: background-color 0.3s;
+  /* 周りの線 */
+  border: 1px solid red;
+}
+.btn:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+}
 .nav-bar {
   position: fixed;
   top: 0;
@@ -102,6 +121,8 @@ onUnmounted(() => {
   z-index: 1000;
   display: flex;
   align-items: center; /* 中央揃え */
+  justify-content: space-between;
+  padding: 0% 20px; /* 上下左右のパディングを追加 */
 }
 
 .hamburger {
@@ -150,10 +171,9 @@ onUnmounted(() => {
 
 .sidebar li:hover {
   background-color: #2a2a2a; /* よりダークな色に */
-  color: #84C357; /* ホバー時のテキストカラーを緑に */
+  color: #84c357; /* ホバー時のテキストカラーを緑に */
 }
 .nav-bar .sidebar-open {
   transform: translateX(0);
 }
-
 </style>
