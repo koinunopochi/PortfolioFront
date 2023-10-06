@@ -52,6 +52,9 @@ const easyFetch: (
     if (response.status == 401 || response.status == 403) {
       throw new Error(response.status.toString());
     }
+    if(!response.ok){
+      throw new Error(response.statusText);
+    }
     return response;
   } catch (error: any) {
     if (i == 1) throw error;
@@ -59,7 +62,7 @@ const easyFetch: (
       await refresh();
       return await easyFetch(method, url, data, 1);
     }
-    console.error(error);
+    // console.error(error);
     throw error;
   }
 };
