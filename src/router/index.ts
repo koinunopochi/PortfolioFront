@@ -14,7 +14,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: UnderConstructionVue,
+      // component: UnderConstructionVue,
+      component: IndexView,
     },
     {
       path: '/projects',
