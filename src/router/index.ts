@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import IndexView from '../views/IndexView.vue';
-import ProjectsViewVue from '@/views/ProjectsView.vue';
-import AutoPic from '@/views/projects/AutoPic.vue';
 import NotFound from '@/views/NotFound.vue';
-import UnderConstructionVue from '@/views/UnderConstruction.vue';
+// import UnderConstructionVue from '@/views/UnderConstruction.vue';
 import LoginView from '@/views/auth/LoginView.vue';
 
 import { refresh } from '@/utils/submit';
