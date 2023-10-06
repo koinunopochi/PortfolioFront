@@ -35,19 +35,32 @@
       </form>
     </section>
     <section class="social-links-section">
-      <h3 >Follow Me</h3>
+      <h3>Follow Me</h3>
       <div class="social-links">
-        <a href="https://twitter.com/a1a2a3b1b2b3b4" class="social-link twitter">X(旧Twitter)</a>
-        <a href="https://qiita.com/koinunopochi" class="social-link qiita">Qiita</a>
-        <a href="https://github.com/koinunopochi" class="social-link github">GitHub</a>
+        <a href="https://twitter.com/a1a2a3b1b2b3b4" class="social-link twitter"
+          >X(旧Twitter)</a
+        >
+        <a href="https://qiita.com/koinunopochi" class="social-link qiita"
+          >Qiita</a
+        >
+        <a href="https://github.com/koinunopochi" class="social-link github"
+          >GitHub</a
+        >
       </div>
     </section>
+    <InformationModal
+      :type="type"
+      v-model:isOpen="showModal"
+      :content="message"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { easyFetch } from '../utils/submit';
+import InformationModal from '../components/InformationModal.vue';
+import { type } from 'os';
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
@@ -55,6 +68,10 @@ const email = ref('');
 const company = ref('');
 const person = ref('');
 const requirements = ref('');
+
+const type = ref('success');
+const showModal = ref(false);
+const message = ref('');
 
 const email_error = ref('');
 const company_error = ref('');
@@ -83,18 +100,22 @@ watch(requirements, (newValue) => {
 });
 
 const submit = async() => {
+  try{
   const res = await easyFetch("POST",new URL(apiUrl+"/contact"),{
     email:email.value,
     company:company.value,
     person:person.value,
     content:requirements.value
   })
-  if(!res.ok){
-    alert("送信に失敗しました。")
-    return
+  type.value = "success";
+  showModal.value = true;
+  message.value = "送信に成功しました。"
+  }catch(e){
+    console.log(e)
+    type.value = "error";
+    showModal.value = true;
+    message.value = "送信に失敗しました。"
   }
-  const res_json = await res.json()
-  alert(res_json.message)
 };
 </script>
 
@@ -103,7 +124,7 @@ const submit = async() => {
   align-items: center; /* ラベルと入力ボックスを中央揃えにする */
   margin-bottom: 20px;
 }
-.title{
+.title {
   text-align: center;
 }
 .input-container {
@@ -170,7 +191,7 @@ button:hover {
 }
 
 .social-link.twitter {
- color: black;
+  color: black;
 }
 
 .social-link.qiita {
