@@ -18,37 +18,12 @@ const router = createRouter({
       component: IndexView,
     },
     {
-      path: '/projects',
-      name: 'projects',
-      component: ProjectsViewVue,
-    },
-    {
-      path: '/projects/auto-pic',
-      name: 'auto-pic',
-      component: AutoPic,
-    },
-    {
       path: '/about-me',
       name: 'about-me',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutMe.vue'),
-    },
-    {
-      path: '/projects/youtube-text',
-      name: 'youtube-text',
-      component: UnderConstructionVue,
-    },
-    {
-      path: '/projects/portfolio',
-      name: 'portfolio',
-      component: UnderConstructionVue,
-    },
-    {
-      path: '/projects/node-summary',
-      name: 'node-summary',
-      component: UnderConstructionVue,
     },
     {
       path: '/login',
