@@ -35,20 +35,20 @@
           <h3 class="title">{{ project.title }}</h3>
           <p class="description">{{ project.overview }}</p>
         </div>
-        <div class="centered-container">
-          <div class="content-card" @click="goToProject('/project-blog')">
-            <h3 class="title">Project・Blog</h3>
-            <p class="description">詳細はこちらから＞＞</p>
-          </div>
+      </div>
+      <!-- Project・Blogカードをproject-cardsの外に移動 -->
+      <div class="centered-container">
+        <div class="content-card" @click="goToProject('/project-blog')">
+          <h3 class="title">Project・Blog</h3>
+          <p class="description">詳細はこちらから＞＞</p>
         </div>
       </div>
     </section>
+
     <!-- contact -->
     <section class="contact-section">
       <h3 class="section-title">Contact</h3>
-      <p class="intro-text">
-        お問い合わせはこちらからお願いします！
-      </p>
+      <p class="intro-text">お問い合わせはこちらからお願いします！</p>
       <div class="centered-container">
         <div class="content-card" @click="goToProject('/contact')">
           <h3 class="title">Contact</h3>
