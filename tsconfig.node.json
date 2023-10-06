@@ -12,6 +12,9 @@
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "types": ["node", "vue"]
+    "types": ["node", "vue"],
+    "include": [
+      "src/**/*.ts" // srcディレクトリの下のすべての.tsファイルを含める
+    ]
   }
 }
