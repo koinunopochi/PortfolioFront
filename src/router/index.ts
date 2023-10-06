@@ -49,6 +49,16 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue'),
     },
     {
+      path:"/create/account",
+      name:"create-account",
+      component: () => import('../views/auth/CreateAccount.vue'),
+    },
+    {
+      path:"/delete/account",
+      name:"delete-account",
+      component: () => import('../views/UnderConstruction.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFound,
