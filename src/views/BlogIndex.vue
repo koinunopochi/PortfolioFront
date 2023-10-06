@@ -8,7 +8,6 @@
       <div class="contents" v-for="content in contents" :key="content._id">
         <div class="content" :id="content._id" @click="move(content._id)">
           <h3>{{ content.title }}</h3>
-          <h4>概要</h4>
           <p>{{ content.overview }}</p>
         </div>
       </div>
@@ -66,21 +65,47 @@ const move = (id: string) => {
 };
 </script>
 <style scoped>
-@import '../assets/main.css';
-</style>
-<style scoped>
-.contents {
-  /* 線を入れる */
-  border: solid 3px #a7ff9d;
-  /* 余白を入れる */
-  padding: 10px;
-  /* 角を丸くする */
-  border-radius: 8px;
-  margin-bottom: 20px;
-  /* 中央に配置 */
-  text-align: center;
+.all-contents {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* padding: 40px; */
+  background-color: #f5f5f5; /* 背景を少しグレーにして白のコンテンツが映えるように */
 }
-.contents:hover {
-  background-color: #a7ff9d;
+
+.main {
+  width: 80%;
+  margin-top: 20px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 12px; /* 角をもう少し丸く */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 影を追加 */
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.main h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2em; /* タイトルのフォントサイズを大きく */
+  color: #333; /* タイトルの色を濃く */
+}
+
+.contents {
+  margin-bottom: 40px; /* コンテンツ間のスペースを増やす */
+}
+
+.content {
+  border: 1px solid #B0E57C; /* 薄い緑のボーダー */
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease; /* クリック時の遷移効果 */
+  cursor: pointer;
+}
+
+.content:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ホバー時の影を追加 */
+  transform: translateY(-3px); /* ホバー時に少し上に動かす */
 }
 </style>
