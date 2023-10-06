@@ -34,15 +34,17 @@
       </v-col>
     </v-row>
   </v-container>
+  <InformationModal :type="'error'" v-model:isOpen="showModal" :content="'ログインに失敗しました。'">
+  </InformationModal>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { easyFetch } from '../../utils/submit';
+import InformationModal from '../../components/InformationModal.vue';
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
-
 
 const router = useRouter();
 
@@ -50,6 +52,7 @@ const valid = ref(true);
 const showPassword = ref(false);
 const username = ref('');
 const password = ref('');
+const showModal = ref(false);
 
 const nameRules = [
   (v: string) => !!v || 'ユーザー名は必須です',
@@ -63,17 +66,16 @@ const passwordRules = [
 
 const login = async () => {
   try {
-    const res = await easyFetch('POST', new URL(apiUrl+'/auth/login'), {
-
+    const res = await easyFetch('POST', new URL(apiUrl + '/auth/login'), {
       username: username.value,
       password: password.value,
     });
     console.log(res);
-    // alert('ログインしました');
     router.push('/');
   } catch (e) {
     console.log(e);
-    alert('ログインに失敗しました');
+    console.log('ログインに失敗しました');
+    showModal.value = true;
   }
 };
 </script>
