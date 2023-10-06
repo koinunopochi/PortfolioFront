@@ -1,18 +1,20 @@
 <template>
-  <v-container>
-    <v-row justify="center">
+  <v-container class="fill-height">
+    <v-row justify="center" align="center">
       <v-col md="6">
-        <v-card>
-          <v-card-title class="headline">ログイン</v-card-title>
+        <v-card class="elevation-12 rounded-lg">
+          <v-card-title class="headline blue--text text--darken-3">ログイン</v-card-title>
           <v-card-text>
             <v-form ref="form" v-model="valid">
               <v-text-field
+                outlined
                 label="ユーザー名"
                 v-model="username"
                 :rules="nameRules"
                 required
               ></v-text-field>
               <v-text-field
+                outlined
                 label="パスワード"
                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
@@ -26,7 +28,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!valid" color="primary" @click="login">
+            <v-btn large :disabled="!valid" color="blue darken-3" @click="login">
               ログイン
             </v-btn>
           </v-card-actions>
@@ -37,6 +39,7 @@
   <InformationModal :type="'error'" v-model:isOpen="showModal" :content="'ログインに失敗しました。'">
   </InformationModal>
 </template>
+
 
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -56,7 +59,7 @@ const showModal = ref(false);
 
 const nameRules = [
   (v: string) => !!v || 'ユーザー名は必須です',
-  (v: string) => v.length <= 10 || 'ユーザー名は10文字以内で入力してください',
+  (v: string) => v.length <= 125 || 'ユーザー名は125文字以内で入力してください',
 ];
 
 const passwordRules = [
