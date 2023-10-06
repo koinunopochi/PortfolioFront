@@ -8,8 +8,22 @@
     </div>
     <div :class="{ 'sidebar-open': isSidebarOpen }" class="sidebar">
       <ul>
-        <li v-for="route in routeList" :key="route.path" @click="navigate(route.path)">
+        <li
+          v-for="route in route_list"
+          :key="route.path"
+          @click="navigate(route.path)"
+        >
           {{ route.name }}
+        </li>
+      </ul>
+      <hr v-if="is_admin"/>
+      <ul v-if="is_admin">
+        <li
+          v-for="admin_route in admin_list"
+          :key="admin_route.path"
+          @click="navigate(admin_route.path);"
+        >
+          {{ admin_route.name }}
         </li>
       </ul>
     </div>
@@ -19,8 +33,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { isAdmin } from '../utils/checkAdmin';
 
-const routeList = [
+const route_list = [
   {
     path: '/',
     name: 'Home',
@@ -32,10 +47,12 @@ const routeList = [
   {
     path: '/project-blog',
     name: 'ProjectBlog',
-  },]
-
+  },
+];
+const admin_list = [{ path: '/project-blog/post', name: '新規作成・更新' }];
 const router = useRouter();
 const isSidebarOpen = ref(false);
+const is_admin = ref(false);
 
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
@@ -59,8 +76,9 @@ const checkCloseSidebar = (event: Event) => {
   }
 };
 
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener('click', checkCloseSidebar);
+  is_admin.value = await isAdmin();
 });
 
 onUnmounted(() => {
@@ -74,7 +92,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px;
+  height: 50px;
   background-color: #333;
   color: #fff;
   z-index: 1000;
