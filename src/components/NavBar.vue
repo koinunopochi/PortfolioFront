@@ -47,7 +47,10 @@ const route_list = [
   {
     path: '/project-blog',
     name: 'ProjectBlog',
-  },
+  },{
+    path: '/contact',
+    name: 'Contact',
+  }
 ];
 const admin_list = [{ path: '/project-blog/post', name: '新規作成・更新' }];
 const router = useRouter();
@@ -92,25 +95,30 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
+  height: 60px; /* 高さを少し増やす */
   background-color: #333;
   color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 影を追加 */
   z-index: 1000;
+  display: flex;
+  align-items: center; /* 中央揃え */
 }
 
 .hamburger {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: 15px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
 }
 
 .line {
   width: 30px;
-  height: 5px;
+  height: 3px; /* 厚さを減少 */
   background-color: #fff;
-  margin: 4px 0;
+  border-radius: 1.5px; /* 丸みを追加 */
 }
 
 .sidebar {
@@ -119,9 +127,9 @@ onUnmounted(() => {
   left: 0;
   width: 250px;
   height: 100vh;
-  background-color: #333;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #333, #555); /* グラデーション追加 */
+  padding: 40px 20px; /* パディングを変更 */
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
@@ -129,19 +137,23 @@ onUnmounted(() => {
 
 .sidebar ul {
   padding: 0;
-  margin: 0;
+  margin: 0 0 20px 0; /* マージン追加 */
   list-style-type: none;
 }
 
 .sidebar li {
-  padding: 10px;
+  padding: 12px 10px; /* パディングを変更 */
   cursor: pointer;
+  border-radius: 5px; /* 丸みを追加 */
+  transition: background-color 0.3s; /* トランジション追加 */
 }
 
 .sidebar li:hover {
-  background-color: #ddd;
+  background-color: #2a2a2a; /* よりダークな色に */
+  color: #84C357; /* ホバー時のテキストカラーを緑に */
 }
 .nav-bar .sidebar-open {
   transform: translateX(0);
 }
+
 </style>
