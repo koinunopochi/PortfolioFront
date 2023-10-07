@@ -22,6 +22,7 @@ import { useRoute } from 'vue-router';
 import { easyFetch } from '../utils/submit';
 import { marked } from 'marked';
 import { isAdmin } from '../utils/checkAdmin';
+import getLinksFromHTML from '../utils/updateClass';
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
@@ -54,7 +55,12 @@ const getBlog = async () => {
     if (res.ok) {
       const blog = await res.json();
       contents.value = blog;
-      rawHtml.value = convertedMarkdown(blog.content);
+      const convertedMarkdown = marked(blog.content);
+      const convertedLinks = await getLinksFromHTML(
+        convertedMarkdown,
+        'same-link'
+      );
+      rawHtml.value = convertedLinks;
     } else {
       console.error('API Request Failed', await res.text());
     }
@@ -63,9 +69,6 @@ const getBlog = async () => {
   }
 };
 
-const convertedMarkdown = (value:string) => {
-  return marked(value);
-};
 
 const processedHtml = computed(() => {
   const parser = new DOMParser();
