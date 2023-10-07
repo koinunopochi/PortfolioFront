@@ -5,7 +5,7 @@
 .md > .contents h5,
 .md > .contents h6 {
   font-weight: bold;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-bottom: 10px;
   border-bottom: solid 1px #ddd;
 }
@@ -19,12 +19,18 @@
   transition: all 0.3s ease;
 }
 .md > .contents > ul,
-.md > .contents > ol {
+.md > .contents > ol,
+.md > .contents ul ul,
+.md > .contents ul ol,
+.md > .contents ol ul,
+.md > .contents ol ol {
   margin-bottom: 5px;
   padding-left: 20px;
   padding-bottom: 5px;
   border-radius: 5px;
 }
+
+.md > .contents > p >img,
 .md > .contents > img {
   max-width: 100%;
   height: auto;
