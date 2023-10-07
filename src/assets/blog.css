@@ -1,15 +1,15 @@
-.md>.contents h1,
-.md>.contents h2,
-.md>.contents h3,
-.md>.contents h4,
-.md>.contents h5,
-.md>.contents h6{
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-bottom: solid 1px #ddd;
+.md > .contents h1,
+.md > .contents h2,
+.md > .contents h3,
+.md > .contents h4,
+.md > .contents h5,
+.md > .contents h6 {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px #ddd;
 }
-.md>.contents{
+.md > .contents {
   margin: 10px 5px;
   padding: 10px;
   border-radius: 5px;
@@ -18,16 +18,54 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.md>.contents>ul,
-.md>.contents>ol{
+.md > .contents > ul,
+.md > .contents > ol {
   margin-bottom: 5px;
   padding-left: 20px;
   padding-bottom: 5px;
   border-radius: 5px;
 }
-.md>.contents>img{
+.md > .contents > img {
   max-width: 100%;
   height: auto;
   margin: 10px 0;
   border-radius: 5px;
+}
+.md > .contents > table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+.md > .contents > p > .same-link,
+.md > .contents > .dynamic-link {
+  margin: 10px 0;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e8f5e9; /* 薄い緑 */
+  border: 1px solid #4caf50; /* 緑色の境界線 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+.md > .contents > p > .same-link,
+.md > .contents > .dynamic-link a {
+  text-decoration: none;
+  color: #388e3c; /* 暗めの緑 */
+  font-weight: 600;
+}
+.md > .contents > p > .same-link:hover,
+.md > .contents > .dynamic-link:hover {
+  background-color: #c8e6c9; /* ホバー時の少し濃い緑 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.md > .contents > pre {
+  background-color: #000000;
+  padding: 16px;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace; /* VSCodeの一般的なフォント + バックアップ */
 }

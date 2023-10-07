@@ -9,7 +9,7 @@
       </div>
       <div class="input-group">
         <label for="password">パスワード:</label>
-        <input type="password" id="password" v-model="password" required />
+        <input type="text" id="password" v-model="password" required />
       </div>
 
       <div class="submit-button">

@@ -40,12 +40,24 @@
       <div class="contents" v-html="convertedMarkdown"></div>
     </div>
   </div>
+  <InformationModal
+    :type="type"
+    v-model:isOpen="showModal"
+    :content="message"
+  />
 </template>
 <script setup lang="ts">
 import { onMounted, ref, watchEffect, watch } from 'vue';
 import { easyFetch } from '../utils/submit';
 import { marked } from 'marked';
+import getLinksFromHTML from '../utils/updateClass';
+import InformationModal from '../components/InformationModal.vue';
+
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
+
+const type = ref('success');
+const showModal = ref(false);
+const message = ref('');
 
 const title = ref('');
 const description = ref('');
@@ -102,15 +114,25 @@ const submit = async () => {
     } else {
       console.error('API Request Failed', await res.text());
     }
+    showModal.value = true;
+    message.value = '保存に成功しました。';
   } catch (error) {
+    type.value = 'error';
+    showModal.value = true;
+    message.value = '保存に失敗しました。';
     console.error('Failed to fetch contents', error);
   }
 };
 const convertedMarkdown = ref('');
 
 // watchとの違いが不明
-watchEffect(() => {
-  convertedMarkdown.value = marked(content.value);
+watch(content, async (newValue) => {
+  const converted = marked(newValue);
+  convertedMarkdown.value = converted;
+  convertedMarkdown.value = await getLinksFromHTML(
+    convertedMarkdown.value,
+    'same-link'
+  );
 });
 
 const getContents = async () => {

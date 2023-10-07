@@ -49,16 +49,17 @@ const easyFetch: (
 
     const response = await fetch(url.toString(), options);
 
-    if (response.status == 401 || response.status == 403) {
+    if (response.status == 401 || response.status == 403 || response.status == 400) {
       throw new Error(response.status.toString());
     }
     if(!response.ok){
+      console.log("call",response);
       throw new Error(response.statusText);
     }
     return response;
   } catch (error: any) {
     if (i == 1) throw error;
-    if (error.message == '401' || error.message == '403') {
+    if (error.message  == "400"||error.message == '401' || error.message == '403') {
       await refresh();
       return await easyFetch(method, url, data, 1);
     }

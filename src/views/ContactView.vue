@@ -12,11 +12,11 @@
           </div>
         </div>
         <div class="form-item">
-          <label for="person">担当者名</label>
+          <label for="person">お名前</label>
           <input type="text" id="person" v-model="person" />
         </div>
         <div class="form-item">
-          <label for="email">email</label>
+          <label for="email">Email</label>
           <div class="input-container">
             <input type="email" name="" id="email" v-model="email" />
             <p class="error-message">{{ email_error }}</p>
