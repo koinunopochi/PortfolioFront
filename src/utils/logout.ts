@@ -4,9 +4,10 @@ import { easyFetch } from './submit';
 
 const logout = async () => {
   try {
+    const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
     const res = await easyFetch(
       'POST',
-      new URL('/auth/logout', import.meta.env.VITE_APP_API_DOMAIN)
+      new URL(apiUrl+'/auth/logout')
     );
     if (!res.ok) {
       throw new Error(res.statusText);
