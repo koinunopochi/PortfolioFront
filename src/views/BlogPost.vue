@@ -137,7 +137,7 @@ watch(content, async (newValue) => {
 
 const getContents = async () => {
   try {
-    const res = await easyFetch('GET', new URL(`${apiUrl}/blog`), {});
+    const res = await easyFetch('GET', new URL(`${apiUrl}/blog/overviews`), {});
     if (res.ok) {
       contents.value = await res.json();
       console.log(contents.value);
@@ -149,7 +149,7 @@ const getContents = async () => {
   }
 };
 
-watch(selectedDocId, (newValue, oldValue) => {
+watch(selectedDocId, async(newValue, oldValue) => {
   // ここに変更時のロジックを書く
   if (newValue === 'new') {
     title.value = '';
@@ -163,14 +163,30 @@ watch(selectedDocId, (newValue, oldValue) => {
 ### 苦労した点
 ### 今後の課題`;
   } else {
+    await getBlogContent();
     const selectedDoc = contents.value.find((doc) => doc._id == newValue);
     if (selectedDoc) {
       title.value = selectedDoc.title;
       description.value = selectedDoc.overview;
-      content.value = selectedDoc.content;
     }
   }
 });
+
+const getBlogContent = async () => {
+  try {
+    const re = await easyFetch(
+      'GET',
+      new URL(`${apiUrl}/blog/${selectedDocId.value}`),
+      {}
+    );
+    if (re.ok) {
+      const blog = await re.json();
+      content.value = blog.content;
+    }
+  } catch (error) {
+    console.error('Failed to fetch contents', error);
+  }
+};
 
 onMounted(() => {
   getContents();
