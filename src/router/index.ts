@@ -44,18 +44,18 @@ const router = createRouter({
       component: () => import('../views/BlogPost.vue'),
     },
     {
-      path:"/contact",
-      name:"contact",
+      path: '/contact',
+      name: 'contact',
       component: () => import('../views/ContactView.vue'),
     },
     {
-      path:"/create/account",
-      name:"create-account",
+      path: '/create/account',
+      name: 'create-account',
       component: () => import('../views/auth/CreateAccount.vue'),
     },
     {
-      path:"/delete/account",
-      name:"delete-account",
+      path: '/delete/account',
+      name: 'delete-account',
       component: () => import('../views/UnderConstruction.vue'),
     },
     {
@@ -68,7 +68,14 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   // 'login'と'not-found'ルートではガードをバイパス
-  if (to.name === 'login' || to.name === 'not-found') {
+  if (
+    to.name === 'login' ||
+    to.name === 'not-found' ||
+    to.name === 'home' ||
+    to.name === 'project-blog-index' ||
+    to.name === 'project-blog' ||
+    to.name==="contact"
+  ) {
     return next();
   }
 
@@ -80,6 +87,7 @@ router.beforeEach(async (to, from, next) => {
   } catch (error) {
     console.error(error);
     // エラーが発生した場合、ログインページにリダイレクト
+    alert('ログインが必要です。');
     return next({ name: 'login' });
   }
 });
