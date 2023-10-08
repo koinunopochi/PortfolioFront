@@ -3,7 +3,9 @@
     <v-row justify="center" align="center">
       <v-col md="6">
         <v-card class="elevation-12 rounded-lg">
-          <v-card-title class="headline blue--text text--darken-3">ログイン</v-card-title>
+          <v-card-title class="headline blue--text text--darken-3"
+            >ログイン</v-card-title
+          >
           <v-card-text>
             <v-form ref="form" v-model="valid">
               <v-text-field
@@ -28,18 +30,33 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn large :disabled="!valid" color="blue darken-3" @click="login">
+            <v-btn
+              large
+              :disabled="!valid"
+              color="blue darken-3"
+              @click="login"
+            >
               ログイン
             </v-btn>
           </v-card-actions>
+          <v-card-text class="text-center mt-3">
+            <!-- mt-3で上にマージンを追加 -->
+            <v-btn text to="/">Home</v-btn>
+            <v-btn text to="/about-me">About Me</v-btn>
+            <v-btn text to="/project-blog">ProjectBlog</v-btn>
+            <v-btn text to="/contact">Contact</v-btn>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
-  <InformationModal :type="'error'" v-model:isOpen="showModal" :content="'ログインに失敗しました。'">
+  <InformationModal
+    :type="'error'"
+    v-model:isOpen="showModal"
+    :content="'ログインに失敗しました。'"
+  >
   </InformationModal>
 </template>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';
