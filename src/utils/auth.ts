@@ -1,6 +1,6 @@
 // logout.ts
 
-import { easyFetch } from './submit';
+import { easyFetch, refresh } from './submit';
 
 const logout = async () => {
   try {
@@ -21,3 +21,15 @@ const logout = async () => {
 };
 
 export { logout };
+
+const isLogin = async () => {
+  try {
+    refresh();
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export { isLogin };
