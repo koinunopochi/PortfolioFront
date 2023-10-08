@@ -97,7 +97,7 @@ const move = (id: string) => {
 }
 
 .content {
-  border: 1px solid #B0E57C; /* 薄い緑のボーダー */
+  border: 1px solid #b0e57c; /* 薄い緑のボーダー */
   border-radius: 8px;
   padding: 20px;
   transition: all 0.3s ease; /* クリック時の遷移効果 */
@@ -107,5 +107,21 @@ const move = (id: string) => {
 .content:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ホバー時の影を追加 */
   transform: translateY(-3px); /* ホバー時に少し上に動かす */
+}
+</style>
+<style scoped>
+@media (max-width: 768px) {
+  .all-contents {
+    /* 配置を中央に */
+    display: flex;
+    justify-content: center;
+    .main {
+      /* 100％ */
+      width: 100%;
+      /* 余白を削除 */
+      margin: 0;
+      padding: 20px 3%;
+    }
+  }
 }
 </style>
