@@ -6,7 +6,9 @@
     <div class="main projects md">
       <div class="header-wrapper">
         <h1>{{ contents.title }}</h1>
-        <button v-if="is_admin" class="btn danger" @click="deleteSubmit()">削除</button>
+        <button v-if="is_admin" class="btn danger" @click="deleteSubmit()">
+          削除
+        </button>
       </div>
       <div class="contents" v-html="processedHtml"></div>
     </div>
@@ -44,7 +46,6 @@ const contents = ref({
 
 const is_admin = ref(false);
 
-
 const getBlog = async () => {
   try {
     const res = await easyFetch(
@@ -68,7 +69,6 @@ const getBlog = async () => {
     console.error('Failed to fetch contents', error);
   }
 };
-
 
 const processedHtml = computed(() => {
   const parser = new DOMParser();
@@ -103,7 +103,7 @@ const deleteSubmit = async () => {
   }
 };
 
-onMounted(async() => {
+onMounted(async () => {
   console.log(projectId.value);
   getBlog();
   is_admin.value = await isAdmin();
@@ -115,7 +115,7 @@ onMounted(async() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;  /* 追加 */
+  width: 100%; /* 追加 */
 }
 
 .btn.danger {
@@ -145,4 +145,20 @@ onMounted(async() => {
 </style>
 <style>
 @import '../assets/blog.css';
+</style>
+<style scoped>
+@media (max-width: 768px) {
+  .all-contents {
+    /* 配置を中央に */
+    display: flex;
+    justify-content: center;
+    .main {
+      /* 100％ */
+      width: 100%;
+      /* 余白を削除 */
+      margin: 0;
+      padding: 20px 3%;
+    }
+  }
+}
 </style>
