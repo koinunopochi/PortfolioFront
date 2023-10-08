@@ -25,7 +25,7 @@
         </div>
         <div class="form-item">
           <label for="content">本文</label>
-          <textarea id="content" v-model="content"></textarea>
+          <textarea id="content" v-model="content" @input="autoResizeTextarea"></textarea>
         </div>
         <div class="form-item">
           <button @click="submit">保存</button>
@@ -149,7 +149,7 @@ const getContents = async () => {
   }
 };
 
-watch(selectedDocId, async(newValue, oldValue) => {
+watch(selectedDocId, async (newValue, oldValue) => {
   // ここに変更時のロジックを書く
   if (newValue === 'new') {
     title.value = '';
@@ -186,6 +186,12 @@ const getBlogContent = async () => {
   } catch (error) {
     console.error('Failed to fetch contents', error);
   }
+};
+
+const autoResizeTextarea = (event: Event) => {
+  const textarea = event.target as HTMLTextAreaElement;
+  textarea.style.height = "auto";
+  textarea.style.height = `${textarea.scrollHeight}px`;
 };
 
 onMounted(() => {
@@ -227,7 +233,9 @@ textarea {
   margin-bottom: 20px;
 }
 textarea {
-  height: 200px;
+  min-height: 500px;
+  overflow-y: hidden; /* スクロールバーを非表示にする */
+  resize: none; /* ユーザーが手動でリサイズするのを防ぐ */
 }
 .form-item {
   margin-bottom: 20px; /* form-itemの間隔を設定 */
