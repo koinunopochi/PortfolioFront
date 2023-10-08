@@ -18,7 +18,7 @@ const { items } = defineProps(['items']);
 <style scoped>
 .table-of-contents {
   margin-top: 20px;
-  margin-right: 40px;
+  margin-right: 15px;
   min-width: 200px;
   border-radius: 8px;
   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);  */
@@ -75,5 +75,10 @@ const { items } = defineProps(['items']);
 
 .table-of-contents li:hover {
   background-color: transparent; /* 背景色のホバーを削除 */
+}
+@media (max-width: 768px) {
+  .table-of-contents {
+    display: none;
+  }
 }
 </style>
