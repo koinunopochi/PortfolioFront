@@ -6,7 +6,8 @@
       <div class="line"></div>
       <div class="line"></div>
     </div>
-    <div class="btn" @click="logout()">LOGOUT</div>
+    <div class="btn danger" v-if="is_login" @click="logout()">LOGOUT</div>
+    <div class="btn info" v-if="!is_login" @click="navigate('/login')">LOGIN</div>
     <div :class="{ 'sidebar-open': isSidebarOpen }" class="sidebar">
       <ul>
         <li
@@ -35,7 +36,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { isAdmin } from '../utils/checkAdmin';
-import { logout } from '../utils/logout';
+import { logout,isLogin } from '../utils/auth';
 const route_list = [
   {
     path: '/',
@@ -62,6 +63,7 @@ const admin_list = [
 const router = useRouter();
 const isSidebarOpen = ref(false);
 const is_admin = ref(false);
+const is_login = ref(false);
 
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
@@ -88,6 +90,7 @@ const checkCloseSidebar = (event: Event) => {
 onMounted(async () => {
   document.addEventListener('click', checkCloseSidebar);
   is_admin.value = await isAdmin();
+  is_login.value = isLogin();
 });
 
 onUnmounted(() => {
@@ -100,13 +103,24 @@ onUnmounted(() => {
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
-  color: red;
   transition: background-color 0.3s;
-  /* 周りの線 */
-  border: 1px solid red;
 }
-.btn:hover {
+.danger{
+  color: #ffffff;
   background-color: #ff0000;
+  border: 1px solid #ff0000;
+}
+.danger:hover {
+  background-color: #ff7c02;
+  color: #ffffff;
+}
+.info{
+  color: #ffffff;
+  background-color: #006eff;
+  border: 1px solid #006eff;
+}
+.info:hover {
+  background-color: #c800ff;
   color: #ffffff;
 }
 .nav-bar {
@@ -177,3 +191,4 @@ onUnmounted(() => {
   transform: translateX(0);
 }
 </style>
+../utils/auth
