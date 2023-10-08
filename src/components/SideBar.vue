@@ -31,15 +31,21 @@
 <script setup lang="ts"></script>
 <style scoped>
 .side-bar {
-  /* マージンの設定 */
-  margin: 20px;
-  /* 横幅 */
-  width: 20%;
-  /* 最小サイズ */
-  min-width: 80px;
-  /* 高さ */
-  height: 100vh;
-  padding: 0 20px;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 10px;
+  min-width: 150px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); */
+  background-color: #fff;
+  /* border: solid 1px #e2e2e2; */
+  transition: box-shadow 0.3s;
+  position: sticky;
+  top: 70px;
+  max-height: 50vh;
+  overflow-y: auto;
+  /* height: 100vh; */
+  padding: 20px;
 }
 .links {
   padding-left: 10px;
@@ -57,5 +63,10 @@
 .links a:hover {
   color: #218838;
   text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .side-bar {
+    display: none;
+  }
 }
 </style>
