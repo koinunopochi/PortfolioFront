@@ -20,6 +20,7 @@ const { items } = defineProps(['items']);
   margin-top: 20px;
   margin-right: 15px;
   min-width: 200px;
+  max-width: 300px;
   border-radius: 8px;
   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);  */
   background-color: #fff; /* 白背景 */
