@@ -25,7 +25,11 @@
         </div>
         <div class="form-item">
           <label for="content">本文</label>
-          <textarea id="content" v-model="content" @input="autoResizeTextarea"></textarea>
+          <textarea
+            id="content"
+            v-model="content"
+            @input="autoResizeTextarea"
+          ></textarea>
         </div>
         <div class="form-item">
           <button @click="submit">保存</button>
@@ -190,7 +194,7 @@ const getBlogContent = async () => {
 
 const autoResizeTextarea = (event: Event) => {
   const textarea = event.target as HTMLTextAreaElement;
-  textarea.style.height = "auto";
+  textarea.style.height = 'auto';
   textarea.style.height = `${textarea.scrollHeight}px`;
 };
 
