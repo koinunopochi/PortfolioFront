@@ -90,7 +90,7 @@ const checkCloseSidebar = (event: Event) => {
 onMounted(async () => {
   document.addEventListener('click', checkCloseSidebar);
   is_admin.value = await isAdmin();
-  is_login.value = isLogin();
+  is_login.value = await isLogin();
 });
 
 onUnmounted(() => {

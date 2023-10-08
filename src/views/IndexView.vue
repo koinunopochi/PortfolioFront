@@ -2,8 +2,9 @@
   <div class="home-container">
     <!-- ヘッダーセクション -->
     <section class="header-section">
-      <h1 class="header-title">岡山晃大</h1>
-      <p class="header-subtitle">
+      <h1 v-if="is_login" class="header-title">岡山晃大</h1>
+      <h1 v-if="!is_login" class="header-title">ポートフォリオサイト</h1>
+      <p v-if="is_login" class="header-subtitle">
         ～　明治学院大学　社会学部　社会福祉学科　３年　～
       </p>
     </section>
@@ -11,7 +12,8 @@
     <!-- 自己紹介セクション -->
     <section class="intro-section">
       <p class="intro-text">
-        こんにちは！岡山晃大です。フルスタックエンジニアを目指して現在学習中の人間です！！
+        こんにちは！<span v-if="is_login">岡山晃大です。</span>フルスタックエンジニアを目指して現在学習中の人間です！！<br>
+        詳細は、下記の「About Me」をご覧ください！
       </p>
       <div class="centered-container">
         <div class="content-card" @click="goToProject('/about-me')">
@@ -63,8 +65,11 @@
 import { onMounted, ref } from 'vue';
 import { easyFetch } from '../utils/submit';
 import { useRouter } from 'vue-router';
+import { isLogin } from '../utils/auth';
 
 const router = useRouter();
+
+const is_login = ref(false);
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 const recentProjects = ref([
@@ -92,6 +97,7 @@ const goToProject = (path: any, id?: any) => {
 onMounted(async () => {
   await getBlogOverviews();
   // console.log(recentProjects);
+  is_login.value = await isLogin();
 });
 </script>
 

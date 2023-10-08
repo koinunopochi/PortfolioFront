@@ -24,7 +24,7 @@ export { logout };
 
 const isLogin = async () => {
   try {
-    refresh();
+    await refresh();
     return true;
   } catch (error) {
     console.error(error);
