@@ -198,3 +198,19 @@ const tableOfContentsItems = [
   text-align: left;
 }
 </style>
+<style scoped>
+@media (max-width: 768px) {
+  .all-contents {
+    /* 配置を中央に */
+    display: flex;
+    justify-content: center;
+    .main {
+      /* 100％ */
+      width: 100%;
+      /* 余白を削除 */
+      margin: 0;
+      padding: 20px 3%;
+    }
+  }
+}
+</style>
