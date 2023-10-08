@@ -218,7 +218,7 @@ onMounted(() => {
 
 input[type='text'],
 textarea {
-  font-size: 10px;
+  font-size: 16px;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
