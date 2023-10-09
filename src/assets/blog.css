@@ -30,7 +30,7 @@
   border-radius: 5px;
 }
 
-.md > .contents > p >img,
+.md > .contents > p > img,
 .md > .contents > img {
   max-width: 100%;
   height: auto;
