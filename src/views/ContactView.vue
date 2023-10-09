@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="button-submit">
-          <button type="submit">送信</button>
+          <button type="submit" :disabled="is_submitting">送信</button>
         </div>
       </form>
     </section>
@@ -77,6 +77,8 @@ import { type } from 'os';
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
+const is_submitting = ref(false);
+
 const email = ref('');
 const company = ref('');
 const person = ref('');
@@ -114,6 +116,7 @@ watch(requirements, (newValue) => {
 
 const submit = async () => {
   try {
+    is_submitting.value = true;
     const res = await easyFetch('POST', new URL(apiUrl + '/contact'), {
       email: email.value,
       company: company.value,
@@ -128,6 +131,8 @@ const submit = async () => {
     type.value = 'error';
     showModal.value = true;
     message.value = '送信に失敗しました。';
+  }finally{
+    is_submitting.value = false;
   }
 };
 </script>
@@ -192,6 +197,11 @@ button {
 
 button:hover {
   background-color: green;
+}
+
+button[disabled] {
+  background-color: #666; /* 任意の暗い色 */
+  cursor: not-allowed;
 }
 
 .social-links-section {
