@@ -74,7 +74,7 @@ router.beforeEach(async (to, from, next) => {
     to.name === 'home' ||
     to.name === 'project-blog-index' ||
     to.name === 'project-blog' ||
-    to.name==="contact"
+    to.name === 'contact'
   ) {
     return next();
   }
