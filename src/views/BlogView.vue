@@ -6,10 +6,31 @@
     <div class="main projects md">
       <div class="header-wrapper">
         <h1>{{ contents.title }}</h1>
+
         <button v-if="is_admin" class="btn danger" @click="deleteSubmit()">
           削除
         </button>
+        <div class="flex end column">
+          <span>作成日：{{ contents.date }}</span>
+          <span>更新日：{{ contents.update_date }}</span>
+        </div>
       </div>
+
+      <div class="tag-contents">
+        <p
+          class="category"
+          :class="contents.category"
+          v-if="['info', 'blog', 'project'].includes(contents.category)"
+        >
+          {{ contents.category }}
+        </p>
+        <div class="tags">
+          <span v-for="tag in contents.tags" :key="tag" class="tag">
+            {{ tag }}
+          </span>
+        </div>
+      </div>
+
       <div class="contents" v-html="processedHtml"></div>
     </div>
     <TableOfContents :items="tableOfContentsItems" />
@@ -25,6 +46,7 @@ import { easyFetch } from '../utils/submit';
 import { marked } from 'marked';
 import { isAdmin } from '../utils/checkAdmin';
 import getLinksFromHTML from '../utils/updateClass';
+import formatJapaneseDate from '../utils/date';
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
@@ -37,11 +59,16 @@ const projectId = ref<string>(route.params.id as string);
 const tableOfContentsItems = ref<{ id: string; name: string }[]>([]);
 const rawHtml = ref('');
 // const title = ref('');
+// const category = ref('');
 const contents = ref({
   id: projectId.value,
   title: 'ERROR 404: Page Not Found',
+  category: 'ERROR',
+  tags: ['ERROR'],
   description: 'ページが見つかりませんでした',
   content: '情報がありません',
+  date: 'ERROR',
+  update_date: 'ERROR',
 });
 
 const is_admin = ref(false);
@@ -105,7 +132,9 @@ const deleteSubmit = async () => {
 
 onMounted(async () => {
   console.log(projectId.value);
-  getBlog();
+  await getBlog();
+  contents.value.date = formatJapaneseDate(contents.value.date);
+  contents.value.update_date = formatJapaneseDate(contents.value.update_date);
   is_admin.value = await isAdmin();
 });
 </script>
@@ -142,6 +171,7 @@ onMounted(async () => {
   border: 1px solid #ff0000;
   color: #fff;
 }
+
 </style>
 <style>
 @import '../assets/blog.css';

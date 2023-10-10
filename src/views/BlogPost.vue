@@ -24,6 +24,14 @@
           <input type="text" id="description" v-model="description" />
         </div>
         <div class="form-item">
+          <label for="category">カテゴリー</label>
+          <input type="text" id="category" v-model="category" />
+        </div>
+        <div class="form-item">
+          <label for="tags">タグ</label>
+          <input type="text" id="tags" v-model="tags" />
+        </div>
+        <div class="form-item">
           <label for="content">本文</label>
           <textarea
             id="content"
@@ -39,6 +47,19 @@
     </div>
     <div class="main md">
       <h1 v-if="title != ''">{{ title }}</h1>
+      <div class="tag-contents">
+        <p
+          :class="category"
+          v-if="['info', 'blog', 'project'].includes(category)"
+        >
+          {{ category }}
+        </p>
+        <div class="tags">
+          <span v-for="tag in tagsArray" :key="tag" class="tag">
+            {{ tag }}
+          </span>
+        </div>
+      </div>
       <h3 v-if="description != ''">概要</h3>
       <p>{{ description }}</p>
       <div class="contents" v-html="convertedMarkdown"></div>
@@ -65,6 +86,8 @@ const message = ref('');
 
 const title = ref('');
 const description = ref('');
+const category = ref('');
+const tags = ref('');
 const content = ref(`### 使用技術
 - Vue.js
 ### 機能
@@ -75,12 +98,14 @@ const content = ref(`### 使用技術
 ### 今後の課題`);
 
 const selectedDocId = ref('new'); // 選択されたドキュメントのID
-
+const tagsArray = ref<string[]>([]);
 const contents = ref([
   {
     _id: '1afodivjadf',
     title: 'ERROR 404: Page Not Found',
     overview: 'ページが見つかりませんでした',
+    category: 'ERROR',
+    tags: ['ERROR'],
     content: 'ページが見つかりませんでした',
   },
 ]);
@@ -108,9 +133,12 @@ const submit = async () => {
       method = 'PUT';
       url = '/blog/' + selectedDocId.value;
     }
+
     const res = await easyFetch(method, new URL(apiUrl + url), {
       title: title.value,
       overview: description.value,
+      category: category.value,
+      tags: tagsArray.value,
       content: content.value,
     });
     if (res.ok) {
@@ -139,6 +167,10 @@ watch(content, async (newValue) => {
   );
 });
 
+watch(tags, (newValue) => {
+  tagsArray.value = newValue.split(',');
+});
+
 const getContents = async () => {
   try {
     const res = await easyFetch('GET', new URL(`${apiUrl}/blog/overviews`), {});
@@ -158,6 +190,8 @@ watch(selectedDocId, async (newValue, oldValue) => {
   if (newValue === 'new') {
     title.value = '';
     description.value = '';
+    category.value = '';
+    tags.value = '';
     content.value = `### 使用技術
 - Vue.js
 ### 機能
@@ -172,6 +206,8 @@ watch(selectedDocId, async (newValue, oldValue) => {
     if (selectedDoc) {
       title.value = selectedDoc.title;
       description.value = selectedDoc.overview;
+      category.value = selectedDoc.category;
+      tags.value = selectedDoc.tags.join(',');
     }
   }
 });
