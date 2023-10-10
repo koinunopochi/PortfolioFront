@@ -1,0 +1,42 @@
+.flex {
+  display: flex;
+}
+.end {
+  align-items: flex-end;
+}
+.column {
+  flex-direction: column;
+}
+.center{
+  justify-content: center;
+}
+.btn{
+  /* buttonのスタイル */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+.btn:hover{
+  /* ホバー時のスタイル */
+  background-color: #ccc;
+}
+.info{
+  /* 背景色が青色 */
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.mx-w120{
+  /* 最大幅が100px */
+  max-width: 120px;
+}
+
+.mb-20{
+  /* マージンが20px */
+  margin-bottom: 20px;
+}
