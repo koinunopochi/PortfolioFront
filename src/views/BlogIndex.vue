@@ -5,10 +5,29 @@
     <SideBar />
     <div class="main projects">
       <h1>Projects・Blogs</h1>
+      <div class="btn info mx-w120 mb-20" @click="switchUp()">
+        <button v-if="!is_up">更新時間：昇順</button>
+        <button v-if="is_up">更新時間：降順</button>
+      </div>
+
       <div class="contents" v-for="content in contents" :key="content._id">
         <div class="content" :id="content._id" @click="move(content._id)">
           <h3>{{ content.title }}</h3>
           <p>{{ content.overview }}</p>
+          <div class="tag-contents">
+            <p
+              class="category"
+              :class="content.category"
+              v-if="['info', 'blog', 'project'].includes(content.category)"
+            >
+              {{ content.category }}
+            </p>
+            <div class="tags">
+              <span v-for="tag in content.tags" :key="tag" class="tag">
+                {{ tag }}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -17,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import { easyFetch } from '../utils/submit';
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
@@ -28,11 +47,17 @@ const router = useRouter();
 const tableOfContentsItems = ref<{ id: string; name: string }[]>([]);
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
+const is_up = ref(localStorage.getItem('is_up') || 'false');
+
 const contents = ref([
   {
     _id: '1afodivjadf',
     title: 'ERROR 404: Page Not Found',
     overview: 'ページが見つかりませんでした',
+    category: 'ERROR',
+    tags: ['ERROR'],
+    update_date: 'ERROR',
+    date: 'ERROR',
   },
 ]);
 
@@ -63,6 +88,45 @@ const move = (id: string) => {
   console.log(id);
   router.push(`/project-blog/${id}`);
 };
+
+const switchUp = () => {
+  let isUp = localStorage.getItem('is_up');
+
+  // is_upがローカルストレージに存在しない場合、またはfalseの場合
+  if (isUp === null || isUp === 'false') {
+    isUp = 'true';
+    // 降順 -> 昇順
+    // 更新時間でソート
+    contents.value.sort((a, b) => {
+      if (a.update_date < b.update_date) return -1;
+      if (a.update_date > b.update_date) return 1;
+      return 0;
+    });
+  } else {
+    isUp = 'false';
+    // 昇順 -> 降順
+    // 更新時間でソート
+    contents.value.sort((a, b) => {
+      if (a.update_date < b.update_date) return 1;
+      if (a.update_date > b.update_date) return -1;
+      return 0;
+    });
+  }
+
+  // 更新されたis_upの値をローカルストレージに保存
+  localStorage.setItem('is_up', isUp);
+  // is_upの値を更新
+  is_up.value = isUp === 'true';
+};
+
+onMounted(() => {
+  const isUp = localStorage.getItem('is_up');
+  if (isUp === null || isUp === 'false') {
+    is_up.value = false;
+  } else {
+    is_up.value = true;
+  }
+})
 </script>
 <style scoped>
 .all-contents {
@@ -124,4 +188,7 @@ const move = (id: string) => {
     }
   }
 }
+</style>
+<style>
+@import '../assets/blog.css';
 </style>
