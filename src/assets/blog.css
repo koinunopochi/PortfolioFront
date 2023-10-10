@@ -9,15 +9,77 @@
   margin-bottom: 10px;
   border-bottom: solid 1px #ddd;
 }
+
 .md > .contents {
-  margin: 10px 5px;
-  padding: 10px;
+  /* margin: 10px 5px; */
+  /* padding: 10px; */
   border-radius: 5px;
   /* background-color: #f5f5f5; */
-  border: 1px solid #ccc;
-  cursor: pointer;
+  /* border: 1px solid #ccc; */
+  /* cursor: pointer; */
   transition: all 0.3s ease;
 }
+
+/* タグ・カテゴリーに関して */
+.all-contents>.main>.contents>.content>.tag-contents,
+.md > .tag-contents {
+  display: flex;
+  /* background-color: #c6ddc6; */
+  /* padding: 10px 10px; */
+  /* color: #fff; */
+  /* border-radius: 5px; */
+  /* margin: 3px; */
+}
+.md > .tag-contents {
+  margin-bottom: 50px;
+}
+.tag-contents>.category,
+.md > .tag-contents > .category {
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 3px;
+  /* 親要素の中心におく */
+  align-self: center;
+}
+.all-contents>.main>.contents>.content>.tag-contents>.info,
+.md > .tag-contents > .info {
+  /* 背景色は青 */
+  background-color: #0095ff;
+  /* 文字色は白 */
+  color: #fff;
+}
+.all-contents>.main>.contents>.content>.tag-contents>.blog,
+.md > .tag-contents > .blog {
+  /* 背景色は黄色 */
+  background-color: #ffeb3b;
+  /* 文字色は黒 */
+  color: #000;
+}
+.all-contents>.main>.contents>.content>.tag-contents>.project,
+.md > .tag-contents > .project {
+  /* 背景色はオレンジ */
+  background-color: #f48836;
+  /* 文字色は白 */
+  color: #fff;
+}
+.all-contents>.main>.contents>.content>.tag-contents>.tags,
+.md > .tag-contents > .tags {
+  display: flex;
+  flex-wrap: wrap;
+/* margin-top: 5px; */
+}
+.all-contents>.main>.contents>.content>.tag-contents>.tags>.tag,
+.md > .tag-contents > .tags > .tag {
+  /* タグ　緑　パディング　文字は白 */
+  background-color: #8ddf8f;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  margin: 3px;
+  margin-top: 3px;
+  /* margin-bottom: 3px; */
+}
+
 .md > .contents > ul,
 .md > .contents > ol,
 .md > .contents ul ul,
