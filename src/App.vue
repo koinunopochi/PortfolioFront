@@ -39,3 +39,6 @@ const showNavBar = computed(() => {
   margin-top: 50px;
 }
 </style>
+<style>
+@import  "assets/basic.css";
+</style>
