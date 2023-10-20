@@ -12,13 +12,20 @@
     <!-- 自己紹介セクション -->
     <section class="intro-section">
       <p class="intro-text">
-        こんにちは！<span v-if="is_login">岡山晃大です。</span>フルスタックエンジニアを目指して現在学習中の人間です！！<br>
+        こんにちは！<span v-if="is_login">岡山晃大です。</span
+        >フルスタックエンジニアを目指して現在学習中の人間です！！<br />
         詳細は、下記の「About Me」をご覧ください！
       </p>
       <div class="centered-container">
-        <div class="content-card" @click="goToProject('/about-me')">
+        <div class="content-card" @click="goToProject('/project-blog/6522565814b3a1b2ba0162dd')">
           <h3 class="title">About Me</h3>
           <p class="description">詳細はこちらから＞＞</p>
+        </div>
+      </div>
+      <div class="centered-container">
+        <div class="content-card" @click="goToProject('/about-me')">
+          <h3 class="title">【詳細】About Me</h3>
+          <p class="description">より詳細な情報はこちらから＞＞</p>
         </div>
       </div>
     </section>
