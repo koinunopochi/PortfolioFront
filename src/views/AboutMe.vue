@@ -60,56 +60,6 @@
           </tbody>
         </table>
       </div>
-
-      <!-- 利用可能技術 -->
-      <div id="skill">
-        <h2>利用可能技術</h2>
-        <div class="contents">
-          <div class="contents-flex">
-            <div class="lang child">
-              <h3>言語</h3>
-              <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>Java</li>
-                <li>Python</li>
-                <li>VBA</li>
-              </ul>
-            </div>
-            <div class="flame-work child">
-              <h3>フレームワーク</h3>
-              <ul>
-                <li>Vue.js</li>
-                <li>Express.js</li>
-                <li>Spring Boot</li>
-                <li>BootStrap</li>
-              </ul>
-            </div>
-            <div class="other">
-              <h3>その他</h3>
-              <ul>
-                <li>Git</li>
-                <li>GitHub</li>
-                <li>VSCode</li>
-                <li>IntelliJ IDEA</li>
-                <li>Postman</li>
-                <li>MySQL</li>
-                <li>MongoDB</li>
-                <li>Node.js</li>
-                <li>Selenium</li>
-                <li>Windows</li>
-                <li>Linux</li>
-                <li>EC2</li>
-                <li>Nginx</li>
-                <li>Apache</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <InternView />
     </div>
     <!-- 目次 -->
     <TableOfContents :items="tableOfContentsItems" />
