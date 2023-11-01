@@ -45,6 +45,11 @@
   background-color: #2196F3;
   color: #fff;
 }
+.danger{
+  /* 背景色が赤色 */
+  background-color: #f44336;
+  color: #fff;
+}
 
 .mx-w120{
   /* 最大幅が120px */
