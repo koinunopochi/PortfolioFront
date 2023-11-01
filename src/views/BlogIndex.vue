@@ -1,16 +1,16 @@
 <!-- BlogIndex.vue -->
 <template>
-  <div class="all-contents">
+  <div class="justify-c-sp-b flex-row flex-start">
     <!-- サイドバー -->
     <SideBar />
-    <div class="main projects">
+    <div class="main projects mt-20 mb-20 mr-10 p-40">
       <h1>Projects・Blogs</h1>
       <div class="btn info mx-w120 mb-20" @click="switchUp()">
         <button v-if="!is_up">更新時間：昇順</button>
         <button v-if="is_up">更新時間：降順</button>
       </div>
 
-      <div class="contents" v-for="content in contents" :key="content._id">
+      <div class="mb-40" v-for="content in contents" :key="content._id">
         <div class="content" :id="content._id" @click="move(content._id)">
           <h3>{{ content.title }}</h3>
           <p>{{ content.overview }}</p>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref,onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { easyFetch } from '../utils/submit';
 import SideBar from '../components/SideBar.vue';
 import TableOfContents from '../components/TableOfContents.vue';
@@ -126,27 +126,14 @@ onMounted(() => {
   } else {
     is_up.value = true;
   }
-})
+});
 </script>
 <style scoped>
-.all-contents {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  /* padding: 40px; */
-  background-color: #f5f5f5; /* 背景を少しグレーにして白のコンテンツが映えるように */
-}
-
 .main {
   width: 80%;
-  margin-top: 20px;
-  padding: 40px;
   background-color: #fff;
   border-radius: 12px; /* 角をもう少し丸く */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 影を追加 */
-  margin-bottom: 20px;
-  margin-right: 10px;
 }
 
 .main h1 {
@@ -154,10 +141,6 @@ onMounted(() => {
   margin-bottom: 50px;
   font-size: 2em; /* タイトルのフォントサイズを大きく */
   color: #333; /* タイトルの色を濃く */
-}
-
-.contents {
-  margin-bottom: 40px; /* コンテンツ間のスペースを増やす */
 }
 
 .content {
