@@ -56,7 +56,7 @@ const router = createRouter({
     {
       path: '/delete/account',
       name: 'delete-account',
-      component: () => import('../views/UnderConstruction.vue'),
+      component: () => import('../views/auth/DeleteAccount.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
