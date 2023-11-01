@@ -63,7 +63,7 @@ const contents = ref([
 
 const getContents = async () => {
   try {
-    const res = await easyFetch('GET', new URL(`${apiUrl}/blog`), {});
+    const res = await easyFetch('GET', new URL(`${apiUrl}/blog/overviews`), {});
     if (res.ok) {
       contents.value = await res.json();
       for (const content of contents.value) {
@@ -81,8 +81,6 @@ const getContents = async () => {
     console.error('Failed to fetch contents', error);
   }
 };
-
-getContents();
 
 const move = (id: string) => {
   console.log(id);
@@ -120,6 +118,7 @@ const switchUp = () => {
 };
 
 onMounted(() => {
+  getContents();
   const isUp = localStorage.getItem('is_up');
   if (isUp === null || isUp === 'false') {
     is_up.value = false;
