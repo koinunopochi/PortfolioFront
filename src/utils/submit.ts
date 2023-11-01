@@ -42,7 +42,7 @@ const easyFetch: (
       credentials: 'include',
     };
 
-    if (method === 'POST' || method === 'PUT') {
+    if (method === 'POST' || method === 'PUT' || method === 'DELETE') {
       options.body = JSON.stringify(data);
     }
     console.log(options);
