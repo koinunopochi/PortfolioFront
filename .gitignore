@@ -1,6 +1,7 @@
 private/
 .history/
 .vscode/
+.env.*
 
 # Logs
 logs
