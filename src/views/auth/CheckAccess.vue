@@ -4,7 +4,12 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <canvas id="myChart" width="400" height="400"></canvas>
+          <div>
+            <h1>Check Access</h1>
+            <p>Check Access</p>
+            <input type="date" v-model="date" />
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </div>
 
           <h1>Check Access</h1>
           <p>Check Access</p>
@@ -43,9 +48,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { easyFetch } from '../../utils/submit';
 import Chart from 'chart.js/auto';
+
+const date = ref('');
 
 const logs = ref([] as any[]);
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
@@ -134,6 +141,9 @@ const chart = (startDate: Date, endDate: Date) => {
 
 onMounted(async () => {
   await submit();
-  chart(new Date('2023-11-04T00:00:00'), new Date('2023-11-04T23:59:59'));
+});
+
+watch(date, (newVal, oldVal) => {
+  chart(new Date(newVal + 'T00:00:00'), new Date(newVal + 'T23:59:59'));
 });
 </script>
