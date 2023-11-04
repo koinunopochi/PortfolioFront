@@ -7,7 +7,9 @@
           <div>
             <h1>Check Access</h1>
             <p>Check Access</p>
-            <input type="date" v-model="date" />
+            <label for="date">Date</label>
+            <input type="date" id="date" v-model="date" />
+            <label for="methods">Methods</label>
             <select name="methods" id="methods" v-model="method">
               <option value="">ALL METHODS</option>
               <option value="GET">GET</option>
@@ -81,20 +83,67 @@
 }
 </style>
 <style scoped>
-/* 検索結果リストのスタイリング */
-.result-list {
-  list-style: none;
-  padding: 0;
+/* 全体のスタイリングをリセットして、一貫性を持たせます。 */
+* {
+  box-sizing: border-box;
   margin: 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-radius: 4px;
-  position: absolute;
-  width: calc(100% - 20px); /* inputの幅に合わせる */
-  background: white;
-  z-index: 1000; /* 他の要素の上に表示 */
+  padding: 0;
 }
 
-/* 各検索結果項目のスタイリング */
+/* フォントのデフォルトを指定 */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+/* コンテナのスタイリング */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* フォーム要素間のスペース */
+form div {
+  margin-bottom: 20px;
+}
+
+/* ラベルのスタイリング */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* 入力フィールドのスタイリング */
+input[type='text'],
+input[type='date'],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 検索結果のリストスタイリング */
+.result-list {
+  list-style: none;
+  margin-top: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  background: #fff;
+  position: absolute;
+  width: 95%;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+/* 検索結果の項目スタイリング */
 .result-list li {
   padding: 10px;
   border-bottom: 1px solid #ccc;
@@ -120,6 +169,15 @@
 .result-list button:hover {
   background-color: #f5f5f5;
 }
+
+/* キャンバスのスタイリング */
+#access {
+  display: block;
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
 </style>
 
 <script setup lang="ts">
@@ -237,6 +295,7 @@ const chart = (startDate: Date, endDate: Date) => {
 // ページが読み込まれたときに実行される
 onMounted(async () => {
   await submit();
+  date.value = new Date().toISOString().slice(0, 10);
   // 同じipは1回だけ表示する
   ips.value = Array.from(new Set(logs.value.map((log) => log.ip)));
   urls.value = Array.from(new Set(logs.value.map((log) => log.url)));
