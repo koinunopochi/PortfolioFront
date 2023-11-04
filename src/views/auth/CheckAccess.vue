@@ -16,16 +16,18 @@
               <option value="Delete">Delete</option>
             </select>
             <div>
-              <input type="text" v-model="ip" @focus="handleFocusIp" @blur="handleBlur"/>
-              <ul v-if="isShowIP">
+              <label for="ip">IP</label>
+              <input type="text" id="ip" v-model="ip" @focus="handleFocusIp" @blur="handleBlur"/>
+              <ul v-if="isShowIP" class="result-list">
                 <li v-for="ip in ips" :key="ip">
                   <button :value="ip" @click="inputIp(ip)">{{ ip }}</button>
                 </li>
               </ul>
             </div>
             <div>
-              <input type="text" v-model="url" @focus="handleFocusUrl" @blur="handleBlur"/>
-              <ul v-if="isShowURL">
+              <label for="url">URL</label>
+              <input type="text" id="url" v-model="url" @focus="handleFocusUrl" @blur="handleBlur"/>
+              <ul v-if="isShowURL" class="result-list">
                 <li v-for="url in urls" :key="url">
                   <button :value="url" @click="inputUrl(url)">{{ url }}</button>
                 </li>
@@ -34,7 +36,7 @@
             <canvas id="access" width="400" height="200"></canvas>
           </div>
 
-          <h1>Check Access</h1>
+          <h2>Check Access</h2>
           <p>Check Access</p>
           <div class="card">
             <div class="card-body">
@@ -70,6 +72,56 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.main{
+  width: 80%;
+  margin: 0 auto;
+
+}
+</style>
+<style scoped>
+/* 検索結果リストのスタイリング */
+.result-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  position: absolute;
+  width: calc(100% - 20px); /* inputの幅に合わせる */
+  background: white;
+  z-index: 1000; /* 他の要素の上に表示 */
+}
+
+/* 各検索結果項目のスタイリング */
+.result-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 最後の項目の境界線を削除 */
+.result-list li:last-child {
+  border-bottom: none;
+}
+
+/* ボタンのスタイリング */
+.result-list button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* ボタンにホバーした際のスタイリング */
+.result-list button:hover {
+  background-color: #f5f5f5;
+}
+</style>
+
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
 import { easyFetch } from '../../utils/submit';
@@ -91,10 +143,11 @@ const handleFocusUrl = () => {
   isShowURL.value = true;
 };
 const handleBlur = () => {
+  // クリックしたときにulが消えてしまうので、setTimeoutで遅らせる
   setTimeout(() => {
     isShowIP.value = false;
     isShowURL.value = false;
-  }, 200);
+  }, 150);
 };
 
 const logs = ref([] as any[]);
@@ -268,3 +321,4 @@ const ChartCreate = (
   });
 };
 </script>
+
