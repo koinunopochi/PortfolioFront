@@ -59,6 +59,11 @@ const router = createRouter({
       component: () => import('../views/auth/DeleteAccount.vue'),
     },
     {
+      path: '/accuses',
+      name: 'accuses',
+      component: () => import('@/views/auth/CheckAccess.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFound,
