@@ -14,6 +14,8 @@
               <option value="PUT">PUT</option>
               <option value="Delete">Delete</option>
             </select>
+            <input type="text" v-model="ip" />
+            <input type="text" v-model="url" />
             <canvas id="access" width="400" height="200"></canvas>
           </div>
 
@@ -60,6 +62,8 @@ import Chart from 'chart.js/auto';
 
 const date = ref('');
 const method = ref('GET');
+const ip = ref('');
+const url = ref('');
 
 const logs = ref([] as any[]);
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
@@ -83,10 +87,13 @@ const chart = (startDate: Date, endDate: Date) => {
   // ログデータを絞り込む
   const filteredLogs = logs.value.filter((log) => {
     const date = new Date(log.time);
-    return date >= startDate && date <= endDate &&
-           log.method === method.value &&
-           log.ip === '::1' &&
-           log.url === '/auth/refresh';
+    return (
+      date >= startDate &&
+      date <= endDate &&
+      log.method === method.value &&
+      log.ip === ip.value &&
+      log.url === url.value
+    );
   });
 
   console.log(filteredLogs);
@@ -132,6 +139,15 @@ onMounted(async () => {
 watch(date, (newVal, oldVal) => {
   chart(new Date(newVal + 'T00:00:00'), new Date(newVal + 'T23:59:59'));
 });
+watch(method, (newVal, oldVal) => {
+  chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
+});
+watch(ip, (newVal, oldVal) => {
+  chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
+});
+watch(url, (newVal, oldVal) => {
+  chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
+});
 </script>
 <script lang="ts">
 const ChartCreate = (
@@ -141,6 +157,11 @@ const ChartCreate = (
   data: any[],
   borderColor: string
 ) => {
+  // 既存のチャートを破棄する
+  const existingChart = Chart.getChart(id); // チャートのIDを使って取得
+  if (existingChart) {
+    existingChart.destroy();
+  }
   const ctx = document.getElementById(id).getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'line',
