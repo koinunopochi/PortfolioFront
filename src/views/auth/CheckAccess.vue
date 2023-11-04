@@ -65,7 +65,7 @@ const submit = async () => {
   }
 };
 
-const chart = (startDate,endDate) => {
+const chart = (startDate: Date, endDate: Date) => {
   // 指定された範囲の日付でフィルタリングする
   const filteredLogs = logs.value.filter((log) => {
     const date = new Date(log.time);
