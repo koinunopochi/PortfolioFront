@@ -8,6 +8,12 @@
             <h1>Check Access</h1>
             <p>Check Access</p>
             <input type="date" v-model="date" />
+            <select name="methods" id="methods" v-model="method">
+              <option value="GET">GET</option>
+              <option value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="Delete">Delete</option>
+            </select>
             <canvas id="access" width="400" height="200"></canvas>
           </div>
 
@@ -53,6 +59,7 @@ import { easyFetch } from '../../utils/submit';
 import Chart from 'chart.js/auto';
 
 const date = ref('');
+const method = ref('GET');
 
 const logs = ref([] as any[]);
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
@@ -77,7 +84,7 @@ const chart = (startDate: Date, endDate: Date) => {
   const filteredLogs = logs.value.filter((log) => {
     const date = new Date(log.time);
     return date >= startDate && date <= endDate &&
-           log.method === 'POST' &&
+           log.method === method.value &&
            log.ip === '::1' &&
            log.url === '/auth/refresh';
   });
