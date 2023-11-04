@@ -79,6 +79,8 @@ const chart = (startDate: Date, endDate: Date) => {
     return date >= startDate && date <= endDate;
   });
 
+  console.log(filteredLogs);
+
   // アクセス数を時間ごとに集計
   const accessCounts: any = {};
   // ログデータから集計
@@ -90,10 +92,6 @@ const chart = (startDate: Date, endDate: Date) => {
     }-${date.getDate()}T${date.getHours()}`;
     accessCounts[hour] = (accessCounts[hour] || 0) + 1;
   });
-
-  // 開始日時と終了日時を決定
-  // const start = new Date(logs.value[0].time); // 最初のログの日時
-  // const end = new Date(logs.value[logs.value.length - 1].time); // 最後のログの日時
 
   // 開始日時から終了日時までの各時間帯について、集計データを埋める
   for (
