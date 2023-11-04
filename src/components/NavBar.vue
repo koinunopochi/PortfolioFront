@@ -7,7 +7,9 @@
       <div class="line"></div>
     </div>
     <div class="btn danger" v-if="is_login" @click="logout()">LOGOUT</div>
-    <div class="btn info" v-if="!is_login" @click="navigate('/login')">LOGIN</div>
+    <div class="btn info" v-if="!is_login" @click="navigate('/login')">
+      LOGIN
+    </div>
     <div :class="{ 'sidebar-open': isSidebarOpen }" class="sidebar">
       <ul>
         <li
@@ -36,7 +38,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { isAdmin } from '../utils/checkAdmin';
-import { logout,isLogin } from '../utils/auth';
+import { logout, isLogin } from '../utils/auth';
 const route_list = [
   {
     path: '/',
@@ -59,6 +61,7 @@ const admin_list = [
   { path: '/project-blog/post', name: '新規作成・更新' },
   { path: '/create/account', name: 'アカウント作成' },
   { path: '/delete/account', name: 'アカウント削除' },
+  { path: '/access', name: 'アクセスログ' },
 ];
 const router = useRouter();
 const isSidebarOpen = ref(false);
@@ -105,7 +108,7 @@ onUnmounted(() => {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-.danger{
+.danger {
   color: #ffffff;
   background-color: #ff0000;
   border: 1px solid #ff0000;
@@ -114,7 +117,7 @@ onUnmounted(() => {
   background-color: #ff7c02;
   color: #ffffff;
 }
-.info{
+.info {
   color: #ffffff;
   background-color: #006eff;
   border: 1px solid #006eff;
