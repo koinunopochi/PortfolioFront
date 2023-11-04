@@ -127,7 +127,7 @@ watch(date, (newVal, oldVal) => {
 });
 </script>
 <script lang="ts">
-const ChartCreate = (id: any,labels: any,label: any,data: any,borderColor: any) => {
+const ChartCreate = (id: string,labels: string[],label: string,data: any[],borderColor: string) => {
   const ctx = document.getElementById(id).getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'line',
