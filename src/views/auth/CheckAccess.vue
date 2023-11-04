@@ -16,7 +16,7 @@
               <option value="Delete">Delete</option>
             </select>
             <div>
-              <input type="text" v-model="ip" />
+              <input type="text" v-model="ip" @focus="handleFocusIp" @blur="handleBlur"/>
               <ul v-if="isShowIP">
                 <li v-for="ip in ips" :key="ip">
                   <button :value="ip" @click="inputIp(ip)">{{ ip }}</button>
@@ -24,8 +24,8 @@
               </ul>
             </div>
             <div>
-              <input type="text" v-model="url" />
-              <ul>
+              <input type="text" v-model="url" @focus="handleFocusUrl" @blur="handleBlur"/>
+              <ul v-if="isShowURL">
                 <li v-for="url in urls" :key="url">
                   <button :value="url" @click="inputUrl(url)">{{ url }}</button>
                 </li>
@@ -81,6 +81,21 @@ const ip = ref('');
 const url = ref('');
 
 const isShowIP = ref(false);
+const isShowURL = ref(false);
+
+const handleFocusIp = () => {
+  isShowIP.value = true;
+};
+
+const handleFocusUrl = () => {
+  isShowURL.value = true;
+};
+const handleBlur = () => {
+  setTimeout(() => {
+    isShowIP.value = false;
+    isShowURL.value = false;
+  }, 200);
+};
 
 const logs = ref([] as any[]);
 const ips = ref([] as any[]);
@@ -111,6 +126,7 @@ const inputIp = (input: string) => {
 
 // urlの値が変更されたときに実行される
 const inputUrl = (input: string) => {
+  isShowURL.value = false;
   url.value = input;
 };
 
@@ -200,12 +216,16 @@ watch(ip, (newVal, oldVal) => {
 // urlの値が変更されたときに実行される
 watch(url, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
+  isShowURL.value = true;
   urls.value = Array.from(
     new Set(
       logs.value.map((log) => log.url).filter((url) => url.indexOf(newVal) !== -1)
     )
   );
-
+  // isShowをfalseにする。これをしないと、ボタンをクリックしたときに再表示されてしまう
+  if (urls.value.length === 1 && urls.value[0] === newVal) {
+    isShowURL.value = false;
+  }
 });
 </script>
 
