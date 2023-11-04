@@ -81,10 +81,25 @@ const chart = (startDate: Date, endDate: Date) => {
 
   console.log(filteredLogs);
 
+  const filteredLogsByMethod = filteredLogs.filter((log) => {
+    return log.method === 'POST';
+  });
+  console.log(filteredLogsByMethod);
+
+  const filteredLogsByIP = filteredLogs.filter((log) => {
+    return log.ip === '::1';
+  });
+  
+  console.log(filteredLogsByIP);
+
+  const filteredLogsByURL = filteredLogs.filter((log) => {
+    return log.url === '/auth/refresh';
+  });
+  console.log(filteredLogsByURL);
   // アクセス数を時間ごとに集計
   const accessCounts: any = {};
   // ログデータから集計
-  filteredLogs.forEach((log) => {
+  filteredLogsByURL.forEach((log) => {
     const date = new Date(log.time);
     // 時間単位で集計（例：'2023-10-09T02'）
     const hour = `${date.getFullYear()}-${
@@ -125,7 +140,13 @@ watch(date, (newVal, oldVal) => {
 });
 </script>
 <script lang="ts">
-const ChartCreate = (id: string,labels: string[],label: string,data: any[],borderColor: string) => {
+const ChartCreate = (
+  id: string,
+  labels: string[],
+  label: string,
+  data: any[],
+  borderColor: string
+) => {
   const ctx = document.getElementById(id).getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'line',
