@@ -38,8 +38,6 @@
             <canvas id="access" width="400" height="200"></canvas>
           </div>
 
-          <h2>Check Access</h2>
-          <p>Check Access</p>
           <div class="card">
             <div class="card-body">
               <div class="row">
