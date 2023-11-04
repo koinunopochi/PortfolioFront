@@ -1,11 +1,11 @@
 <!-- BlogIndex.vue -->
 <template>
-  <div class="justify-c-sp-b flex-row flex-start">
+  <div class="all-contents justify-c-sp-b flex-row flex-start ">
     <!-- サイドバー -->
     <SideBar />
-    <div class="main projects mt-20 mb-20 mr-10 p-40">
+    <div class="main projects mt-20 mb-20 mr-10 p-40 ">
       <h1>Projects・Blogs</h1>
-      <div class="mb-20">
+      <div class="mb-20"> 
         ブログやプロジェクトなどの一覧です。クリックすることで、詳細ページに遷移することができます！！
       </div>
       <div class="btn info mx-w120 mb-20" @click="switchUp()">
@@ -169,7 +169,8 @@ onMounted(() => {
       width: 100%;
       /* 余白を削除 */
       margin: 0;
-      padding: 20px 3%;
+      margin-right: 0px !important;
+      /* padding: 20px 3%; */
     }
   }
 }
