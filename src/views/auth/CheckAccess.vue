@@ -113,18 +113,32 @@ const chart = (startDate: Date, endDate: Date) => {
   const labels = Object.keys(accessCounts).sort();
   const data = labels.map((label) => accessCounts[label]);
   console.log(data);
-  // Chart.jsでグラフを作成
-  const ctx = document.getElementById('myChart').getContext('2d');
+
+  // グラフを描画
+  ChartCreate('myChart', labels, 'アクセス数', data, 'rgb(75, 192, 192)');
+};
+
+onMounted(async () => {
+  await submit();
+});
+
+watch(date, (newVal, oldVal) => {
+  chart(new Date(newVal + 'T00:00:00'), new Date(newVal + 'T23:59:59'));
+});
+</script>
+<script lang="ts">
+const ChartCreate = (id: any,labels: any,label: any,data: any,borderColor: any) => {
+  const ctx = document.getElementById(id).getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: labels,
       datasets: [
         {
-          label: 'アクセス数',
+          label: label,
           data: data,
           fill: false,
-          borderColor: 'rgb(75, 192, 192)',
+          borderColor: borderColor,
           tension: 0.1,
         },
       ],
@@ -138,12 +152,4 @@ const chart = (startDate: Date, endDate: Date) => {
     },
   });
 };
-
-onMounted(async () => {
-  await submit();
-});
-
-watch(date, (newVal, oldVal) => {
-  chart(new Date(newVal + 'T00:00:00'), new Date(newVal + 'T23:59:59'));
-});
 </script>
