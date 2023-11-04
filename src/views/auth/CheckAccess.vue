@@ -8,7 +8,7 @@
             <h1>Check Access</h1>
             <p>Check Access</p>
             <input type="date" v-model="date" />
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="access" width="400" height="200"></canvas>
           </div>
 
           <h1>Check Access</h1>
@@ -115,7 +115,7 @@ const chart = (startDate: Date, endDate: Date) => {
   console.log(data);
 
   // グラフを描画
-  ChartCreate('myChart', labels, 'アクセス数', data, 'rgb(75, 192, 192)');
+  ChartCreate('access', labels, 'アクセス数', data, 'rgb(75, 192, 192)');
 };
 
 onMounted(async () => {
