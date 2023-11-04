@@ -19,11 +19,18 @@
               <input type="text" v-model="ip" />
               <ul v-if="isShow">
                 <li v-for="ip in ips" :key="ip">
-                  <button :value="ip" @click="inputValue(ip)">{{ ip }}</button>
+                  <button :value="ip" @click="inputIp(ip)">{{ ip }}</button>
                 </li>
               </ul>
             </div>
-            <input type="text" v-model="url" />
+            <div>
+              <input type="text" v-model="url" />
+              <ul>
+                <li v-for="url in urls" :key="url">
+                  <button :value="url" @click="inputUrl(url)">{{ url }}</button>
+                </li>
+              </ul>
+            </div>
             <canvas id="access" width="400" height="200"></canvas>
           </div>
 
@@ -77,6 +84,7 @@ const isShow = ref(false);
 
 const logs = ref([] as any[]);
 const ips = ref([] as any[]);
+const urls = ref([] as any[]);
 
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
@@ -95,9 +103,14 @@ const submit = async () => {
   }
 };
 
-const inputValue = (input: string) => {
+const inputIp = (input: string) => {
   isShow.value = false;
   ip.value = input;
+};
+
+const inputUrl = (input: string) => {
+  isShow.value = false;
+  url.value = input;
 };
 
 const chart = (startDate: Date, endDate: Date) => {
@@ -156,6 +169,7 @@ onMounted(async () => {
   await submit();
   // 同じipは1回だけ表示する
   ips.value = Array.from(new Set(logs.value.map((log) => log.ip)));
+  urls.value = Array.from(new Set(logs.value.map((log) => log.url)));
 });
 
 watch(date, (newVal, oldVal) => {
@@ -180,6 +194,12 @@ watch(ip, (newVal, oldVal) => {
 });
 watch(url, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
+  urls.value = Array.from(
+    new Set(
+      logs.value.map((log) => log.url).filter((url) => url.indexOf(newVal) !== -1)
+    )
+  );
+
 });
 </script>
 <script lang="ts">
