@@ -73,33 +73,20 @@ const submit = async () => {
 };
 
 const chart = (startDate: Date, endDate: Date) => {
-  // 指定された範囲の日付でフィルタリングする
+  // ログデータを絞り込む
   const filteredLogs = logs.value.filter((log) => {
     const date = new Date(log.time);
-    return date >= startDate && date <= endDate;
+    return date >= startDate && date <= endDate &&
+           log.method === 'POST' &&
+           log.ip === '::1' &&
+           log.url === '/auth/refresh';
   });
 
   console.log(filteredLogs);
-
-  const filteredLogsByMethod = filteredLogs.filter((log) => {
-    return log.method === 'POST';
-  });
-  console.log(filteredLogsByMethod);
-
-  const filteredLogsByIP = filteredLogs.filter((log) => {
-    return log.ip === '::1';
-  });
-  
-  console.log(filteredLogsByIP);
-
-  const filteredLogsByURL = filteredLogs.filter((log) => {
-    return log.url === '/auth/refresh';
-  });
-  console.log(filteredLogsByURL);
   // アクセス数を時間ごとに集計
   const accessCounts: any = {};
   // ログデータから集計
-  filteredLogsByURL.forEach((log) => {
+  filteredLogs.forEach((log) => {
     const date = new Date(log.time);
     // 時間単位で集計（例：'2023-10-09T02'）
     const hour = `${date.getFullYear()}-${
