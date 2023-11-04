@@ -15,7 +15,14 @@
               <option value="PUT">PUT</option>
               <option value="Delete">Delete</option>
             </select>
-            <input type="text" v-model="ip" />
+            <div>
+              <input type="text" v-model="ip" />
+              <ul v-if="isShow">
+                <li v-for="ip in ips" :key="ip">
+                  <button :value="ip" @click="inputValue(ip)">{{ ip }}</button>
+                </li>
+              </ul>
+            </div>
             <input type="text" v-model="url" />
             <canvas id="access" width="400" height="200"></canvas>
           </div>
@@ -66,6 +73,8 @@ const method = ref('');
 const ip = ref('');
 const url = ref('');
 
+const isShow = ref(false);
+
 const logs = ref([] as any[]);
 const ips = ref([] as any[]);
 
@@ -86,22 +95,26 @@ const submit = async () => {
   }
 };
 
+const inputValue = (input: string) => {
+  isShow.value = false;
+  ip.value = input;
+};
+
 const chart = (startDate: Date, endDate: Date) => {
   // ログデータを絞り込む
-const filteredLogs = logs.value.filter((log) => {
-  const logDate = new Date(log.time);
+  const filteredLogs = logs.value.filter((log) => {
+    const logDate = new Date(log.time);
 
-  // startDateとendDateはフィルタリングの必須条件
-  const isWithinDateRange = logDate >= startDate && logDate <= endDate;
-  // method、ip、urlは存在すればフィルタリングの条件として加える
-  const isMethodMatch = method.value ? log.method === method.value : true;
-  const isIpMatch = ip.value ? log.ip === ip.value : true;
-  const isUrlMatch = url.value ? log.url === url.value : true;
+    // startDateとendDateはフィルタリングの必須条件
+    const isWithinDateRange = logDate >= startDate && logDate <= endDate;
+    // method、ip、urlは存在すればフィルタリングの条件として加える
+    const isMethodMatch = method.value ? log.method === method.value : true;
+    const isIpMatch = ip.value ? log.ip === ip.value : true;
+    const isUrlMatch = url.value ? log.url === url.value : true;
 
-  // すべての条件を満たすかチェック
-  return isWithinDateRange && isMethodMatch && isIpMatch && isUrlMatch;
-});
-
+    // すべての条件を満たすかチェック
+    return isWithinDateRange && isMethodMatch && isIpMatch && isUrlMatch;
+  });
 
   console.log(filteredLogs);
   // アクセス数を時間ごとに集計
@@ -141,7 +154,8 @@ const filteredLogs = logs.value.filter((log) => {
 
 onMounted(async () => {
   await submit();
-  ips.value = logs.value.map((log) => log.ip);
+  // 同じipは1回だけ表示する
+  ips.value = Array.from(new Set(logs.value.map((log) => log.ip)));
 });
 
 watch(date, (newVal, oldVal) => {
@@ -152,6 +166,17 @@ watch(method, (newVal, oldVal) => {
 });
 watch(ip, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
+  isShow.value = true;
+  // ipsの値と,newValの値が部分的に一致するかどうか
+  ips.value = Array.from(
+    new Set(
+      logs.value.map((log) => log.ip).filter((ip) => ip.indexOf(newVal) !== -1)
+    )
+  );
+  // isShowをfalseにする。これをしないと、ボタンをクリックしたときに再表示されてしまう
+  if (ips.value.length === 1 && ips.value[0] === newVal) {
+    isShow.value = false;
+  }
 });
 watch(url, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
