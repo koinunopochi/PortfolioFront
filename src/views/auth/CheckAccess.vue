@@ -74,13 +74,6 @@
 </template>
 
 <style scoped>
-.main{
-  width: 80%;
-  margin: 0 auto;
-
-}
-</style>
-<style scoped>
 /* 全体のスタイリングをリセットして、一貫性を持たせます。 */
 * {
   box-sizing: border-box;
@@ -174,6 +167,77 @@ select {
   margin-top: 20px;
   background: #fff;
   border: 1px solid #ccc;
+}
+
+
+
+/* カードのスタイリング */
+.card {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* ヘッダー部分のスタイリング */
+.card-header {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* テーブルのスタイリング */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+/* テーブルヘッダーのスタイル */
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* ストライプ状のテーブル行のスタイル */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* テーブルのレスポンシブデザイン */
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* テーブル内のセルに折り返し防止のスペースを設定 */
+.table td {
+  white-space: nowrap;
+}
+
+/* テーブルの最後のセルのボーダーを消す */
+.table td:last-child {
+  border-bottom: 0;
+}
+
+/* カードタイトル */
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 </style>
