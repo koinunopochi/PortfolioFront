@@ -9,6 +9,7 @@
             <p>Check Access</p>
             <input type="date" v-model="date" />
             <select name="methods" id="methods" v-model="method">
+              <option value="">ALL METHODS</option>
               <option value="GET">GET</option>
               <option value="POST">POST</option>
               <option value="PUT">PUT</option>
@@ -61,11 +62,13 @@ import { easyFetch } from '../../utils/submit';
 import Chart from 'chart.js/auto';
 
 const date = ref('');
-const method = ref('GET');
+const method = ref('');
 const ip = ref('');
 const url = ref('');
 
 const logs = ref([] as any[]);
+const ips = ref([] as any[]);
+
 const apiUrl = import.meta.env.VITE_APP_API_DOMAIN;
 
 const submit = async () => {
@@ -85,16 +88,20 @@ const submit = async () => {
 
 const chart = (startDate: Date, endDate: Date) => {
   // ログデータを絞り込む
-  const filteredLogs = logs.value.filter((log) => {
-    const date = new Date(log.time);
-    return (
-      date >= startDate &&
-      date <= endDate &&
-      log.method === method.value &&
-      log.ip === ip.value &&
-      log.url === url.value
-    );
-  });
+const filteredLogs = logs.value.filter((log) => {
+  const logDate = new Date(log.time);
+
+  // startDateとendDateはフィルタリングの必須条件
+  const isWithinDateRange = logDate >= startDate && logDate <= endDate;
+  // method、ip、urlは存在すればフィルタリングの条件として加える
+  const isMethodMatch = method.value ? log.method === method.value : true;
+  const isIpMatch = ip.value ? log.ip === ip.value : true;
+  const isUrlMatch = url.value ? log.url === url.value : true;
+
+  // すべての条件を満たすかチェック
+  return isWithinDateRange && isMethodMatch && isIpMatch && isUrlMatch;
+});
+
 
   console.log(filteredLogs);
   // アクセス数を時間ごとに集計
@@ -134,6 +141,7 @@ const chart = (startDate: Date, endDate: Date) => {
 
 onMounted(async () => {
   await submit();
+  ips.value = logs.value.map((log) => log.ip);
 });
 
 watch(date, (newVal, oldVal) => {
