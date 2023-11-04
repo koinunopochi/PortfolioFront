@@ -17,7 +17,7 @@
             </select>
             <div>
               <input type="text" v-model="ip" />
-              <ul v-if="isShow">
+              <ul v-if="isShowIP">
                 <li v-for="ip in ips" :key="ip">
                   <button :value="ip" @click="inputIp(ip)">{{ ip }}</button>
                 </li>
@@ -80,7 +80,7 @@ const method = ref('');
 const ip = ref('');
 const url = ref('');
 
-const isShow = ref(false);
+const isShowIP = ref(false);
 
 const logs = ref([] as any[]);
 const ips = ref([] as any[]);
@@ -103,13 +103,14 @@ const submit = async () => {
   }
 };
 
+// ipの値が変更されたときに実行される
 const inputIp = (input: string) => {
-  isShow.value = false;
+  isShowIP.value = false;
   ip.value = input;
 };
 
+// urlの値が変更されたときに実行される
 const inputUrl = (input: string) => {
-  isShow.value = false;
   url.value = input;
 };
 
@@ -155,7 +156,6 @@ const chart = (startDate: Date, endDate: Date) => {
       accessCounts[hour] = 0; // ログが存在しない時間は0回とする
     }
   }
-
   // ソートされたラベル（時間）とデータ（アクセス数）の配列を生成
   const labels = Object.keys(accessCounts).sort();
   const data = labels.map((label) => accessCounts[label]);
@@ -165,6 +165,7 @@ const chart = (startDate: Date, endDate: Date) => {
   ChartCreate('access', labels, 'アクセス数', data, 'rgb(75, 192, 192)');
 };
 
+// ページが読み込まれたときに実行される
 onMounted(async () => {
   await submit();
   // 同じipは1回だけ表示する
@@ -175,12 +176,15 @@ onMounted(async () => {
 watch(date, (newVal, oldVal) => {
   chart(new Date(newVal + 'T00:00:00'), new Date(newVal + 'T23:59:59'));
 });
+
 watch(method, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
 });
+
+// ipの値が変更されたときに実行される
 watch(ip, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
-  isShow.value = true;
+  isShowIP.value = true;
   // ipsの値と,newValの値が部分的に一致するかどうか
   ips.value = Array.from(
     new Set(
@@ -189,9 +193,11 @@ watch(ip, (newVal, oldVal) => {
   );
   // isShowをfalseにする。これをしないと、ボタンをクリックしたときに再表示されてしまう
   if (ips.value.length === 1 && ips.value[0] === newVal) {
-    isShow.value = false;
+    isShowIP.value = false;
   }
 });
+
+// urlの値が変更されたときに実行される
 watch(url, (newVal, oldVal) => {
   chart(new Date(date.value + 'T00:00:00'), new Date(date.value + 'T23:59:59'));
   urls.value = Array.from(
@@ -202,6 +208,8 @@ watch(url, (newVal, oldVal) => {
 
 });
 </script>
+
+
 <script lang="ts">
 const ChartCreate = (
   id: string,
