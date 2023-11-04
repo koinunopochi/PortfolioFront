@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
+    "chart.js": "^4.4.0",
     "css-loader": "^6.8.1",
     "marked": "^9.1.0",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.2.4",
     "vuetify": "^3.3.17"
   },
