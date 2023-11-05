@@ -17,7 +17,7 @@
               <option value="PUT">PUT</option>
               <option value="Delete">Delete</option>
             </select>
-            <div>
+            <div class="narrow-down">
               <label for="ip">IP</label>
               <input
                 type="text"
@@ -32,11 +32,12 @@
                 </li>
               </ul>
             </div>
-            <div>
+            <div class="narrow-down">
               <label for="url">URL</label>
               <input
                 type="text"
                 id="url"
+                autocomplete="off"
                 v-model="url"
                 @focus="handleFocusUrl"
                 @blur="handleBlur"
@@ -131,7 +132,9 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
+.narrow-down{
+  position: relative;
+}
 /* 検索結果のリストスタイリング */
 .result-list {
   list-style: none;
@@ -140,7 +143,7 @@ select {
   border-radius: 4px;
   background: #fff;
   position: absolute;
-  width: 95%;
+  width: 100%; /* 親要素の幅に合わせる */
   max-height: 300px;
   overflow-y: auto;
   z-index: 2;
