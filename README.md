@@ -54,6 +54,14 @@
 8. 問い合わせ機能
    - 問合せフォームに入力して送信することで、私と問合せした者に対してメールを送信する機能
 
+
+<img width="960" alt="image" src="https://github.com/koinunopochi/PortfolioFront/assets/124518985/a0f014ff-2aa2-46dd-a2de-a1882813eb55">
+
+
+
+※１　WEBサイト上では認証機能を作成したが、真に重要な情報はないためコードでそれぞれ確認が可能である。
+
+
 ## Project Setup
 
 ```sh
@@ -71,10 +79,3 @@ npm run dev
 ```sh
 npm run build:prod
 ```
-
-
-<img width="960" alt="image" src="https://github.com/koinunopochi/PortfolioFront/assets/124518985/a0f014ff-2aa2-46dd-a2de-a1882813eb55">
-
-
-
-※１　WEBサイト上では認証機能を作成したが、真に重要な情報はないためコードでそれぞれ確認が可能である。
