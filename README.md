@@ -23,6 +23,8 @@ npm run build:prod
 - [ポートフォリオサイトの作成に関してまとめた記事(AWSやNginxなどについても記載)](https://dev-okayama.blog/project-blog/65213930424edd317304aca6)
 - [バックエンドのGitHubURL](https://github.com/koinunopochi/PortfolioServer)
 <img width="960" alt="image" src="https://github.com/koinunopochi/PortfolioFront/assets/124518985/22cad4ff-1952-41fd-bcaf-d78187d0b5cd">
+
+
 ## 使用技術
 - Vue.js 3.34
 - chart.js 4.40
