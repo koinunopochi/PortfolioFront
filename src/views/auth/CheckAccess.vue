@@ -371,7 +371,7 @@ const chart = (startDate: Date, endDate: Date) => {
   console.log(data);
 
   // グラフを描画
-  ChartCreate('access', labels, 'アクセス数', data, 'rgb(75, 192, 192)');
+  ChartCreate('access', labels, 'リクエスト数', data, 'rgb(75, 192, 192)');
 };
 
 // ページが読み込まれたときに実行される
