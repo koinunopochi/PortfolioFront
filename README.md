@@ -18,6 +18,7 @@ npm run build:prod
 ```
 ## プロジェクトの概要
 - ポートフォリオサイトの画面を扱う
+- レスポンシブに対応しているので、スマホからでもご確認いただけます。
 - [https://dev-okayama.blog/](https://dev-okayama.blog/)で運用中
 - [ポートフォリオサイトの作成に関してまとめた記事(AWSやNginxなどについても記載)](https://dev-okayama.blog/project-blog/65213930424edd317304aca6)
 - [バックエンドのGitHubURL](https://github.com/koinunopochi/PortfolioServer)
