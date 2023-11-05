@@ -19,6 +19,12 @@ npm run build:prod
 ## プロジェクトの概要
 - ポートフォリオサイトの画面を扱う
 - [https://dev-okayama.blog/](https://dev-okayama.blog/)で運用中
+- [ポートフォリオサイトの作成に関してまとめた記事(AWSやNginxなどについても記載)](https://dev-okayama.blog/project-blog/65213930424edd317304aca6)
+- [バックエンドのGitHubURL](https://github.com/koinunopochi/PortfolioServer)
+## 使用技術
+- Vue.js 3.34
+- chart.js 4.40
+- vuetify 3.3.17
 ## 機能
 1. 認証機能
    - バックエンドサーバーにアクセスし、登録済みのユーザーであるかを確認する。
