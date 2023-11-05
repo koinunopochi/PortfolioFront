@@ -353,7 +353,7 @@ const chart = (startDate: Date, endDate: Date) => {
       accessCounts[hour] = 0; // ログが存在しない時間は0回とする
     }
   }
-  
+
   // 集計データを時間順に並び替え
   const labels = [];
   for (
@@ -462,8 +462,4 @@ const ChartCreate = (
     },
   });
 };
-// 日付文字列を日付オブジェクトに変換するヘルパー関数
-function parseDateLabel(label: string): Date {
-  return new Date(label.replace('T', ' '));
-}
 </script>
