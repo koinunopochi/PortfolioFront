@@ -7,10 +7,22 @@
 .end {
   align-items: flex-end;
 }
-.flex-row{
+.flex-row {
   display: flex;
   flex-direction: row;
+  /* 必要に応じて他のスタイリング */
 }
+
+.flex-row p {
+  flex: 1; /* 各子要素に等しいスペースを割り当てる */
+  max-width: 50%; /* 親要素の半分の幅 */
+}
+
+.flex-row img {
+  width: 100%; /* 親要素（ここでは<p>タグ）に合わせてサイズ調整 */
+  height: auto; /* 画像の縦横比を維持 */
+}
+
 .flex-column{
   display: flex;
   flex-direction: column;
