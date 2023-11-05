@@ -24,7 +24,7 @@
                 id="ip"
                 v-model="ip"
                 @focus="handleFocusIp"
-                @blur="handleBlur"
+                @blur="handleBlurIp"
               />
               <ul v-if="isShowIP" class="result-list">
                 <li v-for="ip in ips" :key="ip">
@@ -40,7 +40,7 @@
                 autocomplete="off"
                 v-model="url"
                 @focus="handleFocusUrl"
-                @blur="handleBlur"
+                @blur="handleBlurUrl"
               />
               <ul v-if="isShowURL" class="result-list">
                 <li v-for="url in urls" :key="url">
@@ -274,10 +274,14 @@ const handleFocusIp = () => {
 const handleFocusUrl = () => {
   isShowURL.value = true;
 };
-const handleBlur = () => {
+const handleBlurIp = () => {
   // クリックしたときにulが消えてしまうので、setTimeoutで遅らせる
   setTimeout(() => {
     isShowIP.value = false;
+  }, 150);
+};
+const handleBlurUrl = () => {
+  setTimeout(() => {
     isShowURL.value = false;
   }, 150);
 };
