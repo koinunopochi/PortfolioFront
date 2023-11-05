@@ -353,12 +353,19 @@ const chart = (startDate: Date, endDate: Date) => {
       accessCounts[hour] = 0; // ログが存在しない時間は0回とする
     }
   }
-
-  // ソートされたラベル（時間）とデータ（アクセス数）の配列を生成
-  // 日付文字列を日付オブジェクトに変換してから比較
-  const labels = Object.keys(accessCounts).sort((a, b) => {
-    return parseDateLabel(a).getTime() - parseDateLabel(b).getTime();
-  });
+  
+  // 集計データを時間順に並び替え
+  const labels = [];
+  for (
+    let date = new Date(startDate);
+    date <= endDate;
+    date.setHours(date.getHours() + 1)
+  ) {
+    const hour = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}T${date.getHours()}`;
+    labels.push(hour);
+  }
 
   const data = labels.map((label) => accessCounts[label]);
   console.log(data);
