@@ -1,21 +1,4 @@
 # PortfolioFront
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build:prod
-```
 ## プロジェクトの概要
 - ポートフォリオサイトの画面を扱う
 - レスポンシブに対応しているので、スマホからでもご確認いただけます。
@@ -77,3 +60,22 @@ npm run build:prod
 
 
 ※１　WEBサイト上では認証機能を作成したが、真に重要な情報はないためコードでそれぞれ確認が可能である。
+
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build:prod
+```
