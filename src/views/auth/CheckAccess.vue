@@ -19,7 +19,13 @@
             </select>
             <div>
               <label for="ip">IP</label>
-              <input type="text" id="ip" v-model="ip" @focus="handleFocusIp" @blur="handleBlur"/>
+              <input
+                type="text"
+                id="ip"
+                v-model="ip"
+                @focus="handleFocusIp"
+                @blur="handleBlur"
+              />
               <ul v-if="isShowIP" class="result-list">
                 <li v-for="ip in ips" :key="ip">
                   <button :value="ip" @click="inputIp(ip)">{{ ip }}</button>
@@ -28,7 +34,13 @@
             </div>
             <div>
               <label for="url">URL</label>
-              <input type="text" id="url" v-model="url" @focus="handleFocusUrl" @blur="handleBlur"/>
+              <input
+                type="text"
+                id="url"
+                v-model="url"
+                @focus="handleFocusUrl"
+                @blur="handleBlur"
+              />
               <ul v-if="isShowURL" class="result-list">
                 <li v-for="url in urls" :key="url">
                   <button :value="url" @click="inputUrl(url)">{{ url }}</button>
@@ -96,7 +108,7 @@ body {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* フォーム要素間のスペース */
@@ -124,7 +136,7 @@ select {
 .result-list {
   list-style: none;
   margin-top: 5px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   background: #fff;
   position: absolute;
@@ -168,8 +180,6 @@ select {
   background: #fff;
   border: 1px solid #ccc;
 }
-
-
 
 /* カードのスタイリング */
 .card {
@@ -239,7 +249,6 @@ select {
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
-
 </style>
 
 <script setup lang="ts">
@@ -319,7 +328,6 @@ const chart = (startDate: Date, endDate: Date) => {
     return isWithinDateRange && isMethodMatch && isIpMatch && isUrlMatch;
   });
 
-  console.log(filteredLogs);
   // アクセス数を時間ごとに集計
   const accessCounts: any = {};
   // ログデータから集計
@@ -345,8 +353,13 @@ const chart = (startDate: Date, endDate: Date) => {
       accessCounts[hour] = 0; // ログが存在しない時間は0回とする
     }
   }
+
   // ソートされたラベル（時間）とデータ（アクセス数）の配列を生成
-  const labels = Object.keys(accessCounts).sort();
+  // 日付文字列を日付オブジェクトに変換してから比較
+  const labels = Object.keys(accessCounts).sort((a, b) => {
+    return parseDateLabel(a).getTime() - parseDateLabel(b).getTime();
+  });
+
   const data = labels.map((label) => accessCounts[label]);
   console.log(data);
 
@@ -393,7 +406,9 @@ watch(url, (newVal, oldVal) => {
   isShowURL.value = true;
   urls.value = Array.from(
     new Set(
-      logs.value.map((log) => log.url).filter((url) => url.indexOf(newVal) !== -1)
+      logs.value
+        .map((log) => log.url)
+        .filter((url) => url.indexOf(newVal) !== -1)
     )
   );
   // isShowをfalseにする。これをしないと、ボタンをクリックしたときに再表示されてしまう
@@ -402,7 +417,6 @@ watch(url, (newVal, oldVal) => {
   }
 });
 </script>
-
 
 <script lang="ts">
 const ChartCreate = (
@@ -441,5 +455,8 @@ const ChartCreate = (
     },
   });
 };
+// 日付文字列を日付オブジェクトに変換するヘルパー関数
+function parseDateLabel(label: string): Date {
+  return new Date(label.replace('T', ' '));
+}
 </script>
-
